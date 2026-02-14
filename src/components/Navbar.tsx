@@ -28,10 +28,10 @@ export default function Navbar() {
                 </a>
             </div>
 
-            {/* Logo */}
+            {/* Logo — absolute center */}
             <a
                 href="/"
-                className="block hover:scale-105 transition-transform duration-500 cursor-pointer"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hover:scale-105 transition-transform duration-500 cursor-pointer"
             >
                 <Image
                     src="/AmaruyaLogo.webp"
