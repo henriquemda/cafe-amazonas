@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import PasswordGate from "@/components/PasswordGate";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -101,7 +102,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${playfair.variable} ${inter.variable} antialiased`}>
-        {children}
+        <PasswordGate>
+          {children}
+        </PasswordGate>
       </body>
     </html>
   );
