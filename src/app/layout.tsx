@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cafe-amazonas.vercel.app"),
+  metadataBase: new URL("https://amazonas.vision.pe"),
   title: {
     default: "Amaruya Café — Nacido en la Selva, Tostado con Alma",
     template: "%s | Amaruya Café",
