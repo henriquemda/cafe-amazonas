@@ -20,11 +20,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://cafe-amazonas.vercel.app"),
   title: {
-    default: "Amaruya Café — Café de Especialidad Amazónico | Origen Único",
+    default: "Amaruya Café — Nacido en la Selva, Tostado con Alma",
     template: "%s | Amaruya Café",
   },
   description:
-    "Café de especialidad de origen único, cosechado de manera sostenible en la Amazonía. Variedades Typica y Caturra tostadas con maestría. 100% Comercio Justo.",
+    "Donde la Amazonía se convierte en taza. Café de especialidad de origen único — variedades Typica y Caturra cosechadas bajo la sombra de la selva. Comercio justo, tostado artesanal, espíritu salvaje.",
   keywords: [
     "café amazónico",
     "café de especialidad",
@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     "café tostado artesanal",
     "café orgánico Amazonía",
     "café de la selva",
+    "café peruano premium",
+    "single origin coffee rainforest",
+    "comprar café de especialidad",
   ],
   authors: [{ name: "Amaruya Café" }],
   creator: "Amaruya Café",
@@ -65,9 +68,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Amaruya Café — Café de Especialidad Amazónico",
+    title: "Amaruya Café — Nacido en la Selva, Tostado con Alma",
     description:
-      "Café de origen único cosechado de manera sostenible en la Amazonía. Variedades Typica y Caturra. 100% Comercio Justo. Desde la selva hasta tu taza.",
+      "Un café que no se cultiva — se descubre. Origen único de la Amazonía profunda. Variedades Typica y Caturra, 100% comercio justo. Desde el Río Negro hasta tu ritual.",
     type: "website",
     locale: "es_ES",
     siteName: "Amaruya Café",
@@ -76,16 +79,16 @@ export const metadata: Metadata = {
         url: "/meta-image.png",
         width: 1200,
         height: 630,
-        alt: "Amaruya Café — Café de Especialidad Amazónico. Bolsas de café Typica y Caturra entre la selva amazónica.",
+        alt: "Bolsas de café Amaruya — variedades Typica y Caturra — sobre una mesa de madera en la selva amazónica, junto a una taza humeante y granos verdes.",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amaruya Café — Café de Especialidad Amazónico",
+    title: "Amaruya Café — Nacido en la Selva, Tostado con Alma",
     description:
-      "Café de origen único de la Amazonía. Variedades Typica y Caturra tostadas con maestría. 100% Comercio Justo.",
+      "Un café que no se cultiva, se descubre. Origen único amazónico. Typica & Caturra bajo sombra. 100% comercio justo.",
     images: ["/meta-image.png"],
   },
 };
