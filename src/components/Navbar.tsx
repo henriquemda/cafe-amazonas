@@ -24,7 +24,7 @@ export default function Navbar() {
             >
                 <Image
                     src="/AmaruyaLogo.webp"
-                    alt="Amaruya Coffee"
+                    alt="Café Amazonas"
                     width={160}
                     height={64}
                     className="h-14 md:h-16 w-auto object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"

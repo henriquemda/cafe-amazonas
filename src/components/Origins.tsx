@@ -116,7 +116,7 @@ export default function Origins() {
                                         {coffee.name}
                                     </h3>
                                     <p className="text-xs text-gray-400 italic mb-6">
-                                        "{coffee.tagline}"
+                                        &ldquo;{coffee.tagline}&rdquo;
                                     </p>
 
                                     {/* Description (Reveal on hover) */}

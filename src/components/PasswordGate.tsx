@@ -14,12 +14,25 @@ export default function PasswordGate({
     const [error, setError] = useState(false);
     const [isFadingOut, setIsFadingOut] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    const [particles, setParticles] = useState<{ left: string; top: string; size: string; duration: string; delay: string; }[]>([]);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setParticles(Array.from({ length: 20 }).map(() => ({
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            size: Math.random() > 0.5 ? "2px" : "3px",
+            duration: `${3 + Math.random() * 5}s`,
+            delay: `-${Math.random() * 5}s`,
+        })));
+    }, []);
 
     // Check storage on mount
     useEffect(() => {
         if (typeof window !== "undefined") {
             const storedAuth = window.sessionStorage.getItem("amaruya_access");
             if (storedAuth === "granted") {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setIsUnlocked(true);
             }
             setIsLoading(false);
@@ -78,17 +91,17 @@ export default function PasswordGate({
 
             {/* Floating Particles - Simulated via CSS and simple inline styles */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {Array.from({ length: 20 }).map((_, i) => (
+                {particles.map((p, i) => (
                     <div
                         key={i}
                         className="absolute rounded-full bg-[var(--color-gold-400)] opacity-20 animate-pulse"
                         style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            width: Math.random() > 0.5 ? "2px" : "3px",
-                            height: Math.random() > 0.5 ? "2px" : "3px",
-                            animationDuration: `${3 + Math.random() * 5}s`,
-                            animationDelay: `-${Math.random() * 5}s`,
+                            left: p.left,
+                            top: p.top,
+                            width: p.size,
+                            height: p.size,
+                            animationDuration: p.duration,
+                            animationDelay: p.delay,
                         }}
                     />
                 ))}
@@ -110,7 +123,7 @@ export default function PasswordGate({
 
                 {/* Title */}
                 <h1 className="font-serif text-4xl md:text-5xl text-[var(--color-gold-300)] tracking-[0.2em] mb-4 text-center uppercase animate-fade-in-up drop-shadow-lg">
-                    Amaruya
+                    Café Amazonas
                 </h1>
                 <p className="font-sans text-[10px] md:text-xs text-white/40 tracking-[0.4em] mb-16 uppercase animate-fade-in-up animate-delay-1">
                     La Puerta del Origen

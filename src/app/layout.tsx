@@ -21,8 +21,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://amazonas.vision.pe"),
   title: {
-    default: "Amaruya Café — Nacido en la Selva, Tostado con Alma",
-    template: "%s | Amaruya Café",
+    default: "Café Amazonas — Nacido en la Selva, Tostado con Alma",
+    template: "%s | Café Amazonas",
   },
   description:
     "Donde la Amazonía se convierte en taza. Café de especialidad de origen único — variedades Typica y Caturra cosechadas bajo la sombra de la selva. Comercio justo, tostado artesanal, espíritu salvaje.",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "café Typica",
     "café Caturra",
     "café comercio justo",
-    "Amaruya Café",
+    "Café Amazonas",
     "café artesanal",
     "specialty coffee Amazon",
     "café gourmet",
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
     "single origin coffee rainforest",
     "comprar café de especialidad",
   ],
-  authors: [{ name: "Amaruya Café" }],
-  creator: "Amaruya Café",
+  authors: [{ name: "Café Amazonas" }],
+  creator: "Café Amazonas",
   robots: {
     index: true,
     follow: true,
@@ -69,25 +69,25 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Amaruya Café — Nacido en la Selva, Tostado con Alma",
+    title: "Café Amazonas — Nacido en la Selva, Tostado con Alma",
     description:
       "Un café que no se cultiva — se descubre. Origen único de la Amazonía profunda. Variedades Typica y Caturra, 100% comercio justo. Desde el Río Negro hasta tu ritual.",
     type: "website",
     locale: "es_ES",
-    siteName: "Amaruya Café",
+    siteName: "Café Amazonas",
     images: [
       {
         url: "/meta-image.png",
         width: 1200,
         height: 630,
-        alt: "Bolsas de café Amaruya — variedades Typica y Caturra — sobre una mesa de madera en la selva amazónica, junto a una taza humeante y granos verdes.",
+        alt: "Bolsas de café Café Amazonas — variedades Typica y Caturra — sobre una mesa de madera en la selva amazónica, junto a una taza humeante y granos verdes.",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amaruya Café — Nacido en la Selva, Tostado con Alma",
+    title: "Café Amazonas — Nacido en la Selva, Tostado con Alma",
     description:
       "Un café que no se cultiva, se descubre. Origen único amazónico. Typica & Caturra bajo sombra. 100% comercio justo.",
     images: ["/meta-image.png"],
