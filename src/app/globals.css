@@ -17,8 +17,48 @@
 
 /* ── Base ── */
 body {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #050505;
+  color: #f0f0f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "pnum" 1, "onum" 1, "kern" 1;
+}
+
+/* ── Typography Utilities ── */
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  color: transparent;
+}
+
+.text-outline-gold {
+  -webkit-text-stroke: 1px var(--color-gold-400);
+  color: transparent;
+}
+
+/* ── 3D & Perspective ── */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* ── Masking & Reveals ── */
+.reveal-mask {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  animation: reveal-up-poly 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes reveal-up-poly {
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
 }
 
 /* ── Scrollbar ── */
@@ -264,10 +304,13 @@ body {
 
 /* Topographic contour drift */
 @keyframes topo-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.03;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.08;
     transform: scale(1.02);
@@ -280,6 +323,7 @@ body {
     transform: scale(1);
     opacity: 0.6;
   }
+
   100% {
     transform: scale(3);
     opacity: 0;
@@ -288,14 +332,24 @@ body {
 
 /* Slow rotate for atmosphere */
 @keyframes slow-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Counter rotate */
 @keyframes slow-rotate-reverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 /* Reveal upward with elastic */
@@ -304,21 +358,80 @@ body {
     opacity: 0;
     transform: translateY(60px) scale(0.95);
   }
+
   60% {
     transform: translateY(-8px) scale(1.01);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
+/* Cinematic Slow Zoom */
+@keyframes slow-zoom {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s linear infinite alternate;
+}
+
 /* Horizontal scan line */
 @keyframes scan-line {
-  0% { transform: translateX(-100%); opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: translateX(100%); opacity: 0; }
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ── Hero Specific ── */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 2s cubic-bezier(0.8, 0, 0.2, 1) infinite;
 }
 
 /* Content slide transition */
@@ -327,6 +440,7 @@ body {
     opacity: 0;
     transform: translateX(20px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -343,12 +457,24 @@ body {
 
 /* Journey timeline connector */
 @keyframes draw-line {
-  from { height: 0; }
-  to { height: 100%; }
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
+  }
 }
 
 /* Number counter pulse */
 @keyframes stat-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
 }

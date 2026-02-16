@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Instagram, Mail, MapPin, X } from "lucide-react";
@@ -16,11 +16,11 @@ interface FullScreenMenuProps {
 }
 
 const NAV_LINKS = [
-    { href: "/", label: "Inicio", description: "La puerta de la selva" },
-    { href: "/tienda", label: "Tienda", description: "Adquiere lo salvaje" },
-    { href: "#origins", label: "Origen", description: "Mendoza, Amazonas" },
-    { href: "#", label: "Impacto", description: "Nuestra huella verde" },
-    { href: "#", label: "Contacto", description: "Conversa con nosotros" },
+    { href: "/", label: "Inicio", description: "La puerta de la selva", image: "https://picsum.photos/seed/jungle/600/800" },
+    { href: "/tienda", label: "Tienda", description: "Adquiere lo salvaje", image: "https://picsum.photos/seed/coffee_bag/600/800" },
+    { href: "#origins", label: "Origen", description: "Mendoza, Amazonas", image: "https://picsum.photos/seed/mendoza_forest/600/800" },
+    { href: "#", label: "Impacto", description: "Nuestra huella verde", image: "https://picsum.photos/seed/farmer/600/800" },
+    { href: "#", label: "Contacto", description: "Conversa con nosotros", image: "https://picsum.photos/seed/pour_over/600/800" },
 ];
 
 const FOOTER_LINKS = [
@@ -31,10 +31,12 @@ const FOOTER_LINKS = [
 
 export default function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps) {
     const overlayRef = useRef<HTMLDivElement>(null);
+    const [hoveredLink, setHoveredLink] = useState<number>(0);
 
     // Lock body scroll when open
     useEffect(() => {
         if (isOpen) {
+            // ... (rest of useEffect)
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "";
@@ -130,20 +132,21 @@ export default function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps)
 
                     {/* LEFT: Navigation Links */}
                     <div className="flex-1 flex flex-col justify-center py-8 lg:py-0">
-                        <nav className="space-y-1">
+                        <nav className="space-y-2">
                             {NAV_LINKS.map((link, i) => (
                                 <div
                                     key={link.label}
                                     className={`transition-all duration-700 ${isOpen
-                                            ? "opacity-100 translate-x-0"
-                                            : "opacity-0 -translate-x-12"
+                                        ? "opacity-100 translate-x-0"
+                                        : "opacity-0 -translate-x-12"
                                         }`}
                                     style={{ transitionDelay: isOpen ? `${200 + i * 80}ms` : "0ms" }}
                                 >
                                     <Link
                                         href={link.href}
                                         onClick={onClose}
-                                        className="group flex items-baseline gap-4 py-4 md:py-5 border-b border-white/[0.04] hover:border-gold-400/30 transition-colors duration-500"
+                                        onMouseEnter={() => setHoveredLink(i)}
+                                        className="group flex items-baseline gap-4 py-2 md:py-3 transition-colors duration-500"
                                     >
                                         {/* Index */}
                                         <span className="font-mono text-[10px] text-white/20 group-hover:text-gold-400 transition-colors duration-300 w-6">
@@ -151,19 +154,14 @@ export default function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps)
                                         </span>
 
                                         {/* Label */}
-                                        <span className="font-serif text-4xl md:text-5xl lg:text-6xl text-white/80 group-hover:text-white transition-colors duration-300 leading-none tracking-tight">
+                                        <span className="font-serif text-[8vh] lg:text-[10vh] text-white/40 group-hover:text-white transition-all duration-500 leading-none tracking-tight group-hover:translate-x-4">
                                             {link.label}
-                                        </span>
-
-                                        {/* Description (appears on hover) */}
-                                        <span className="hidden md:inline-block text-xs text-white/0 group-hover:text-white/30 transition-all duration-500 translate-x-0 group-hover:translate-x-2 uppercase tracking-widest">
-                                            {link.description}
                                         </span>
 
                                         {/* Arrow */}
                                         <ArrowUpRight
-                                            size={20}
-                                            className="ml-auto text-white/0 group-hover:text-gold-400 transition-all duration-300 translate-x-0 group-hover:translate-x-1 -translate-y-0 group-hover:-translate-y-1"
+                                            size={24}
+                                            className="ml-4 opacity-0 group-hover:opacity-100 text-gold-400 transition-all duration-300 -translate-x-4 group-hover:translate-x-0"
                                         />
                                     </Link>
                                 </div>
@@ -177,29 +175,27 @@ export default function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps)
                             className={`relative w-full max-w-md aspect-[3/4] rounded-3xl overflow-hidden border border-white/[0.06] transition-all duration-1000 delay-500 ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
                                 }`}
                         >
-                            <Image
-                                src="https://picsum.photos/seed/mendoza_forest/600/800"
-                                alt="Selva de Mendoza"
-                                fill
-                                className="object-cover opacity-40"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
+                            {/* Dynamic Image */}
+                            {NAV_LINKS.map((link, index) => (
+                                <div
+                                    key={link.label}
+                                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${hoveredLink === index ? "opacity-100" : "opacity-0"}`}
+                                >
+                                    <Image
+                                        src={link.image}
+                                        alt={link.label}
+                                        fill
+                                        className="object-cover opacity-60"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-                            {/* Overlay content */}
-                            <div className="absolute bottom-8 left-8 right-8">
-                                <span className="text-[9px] uppercase tracking-[0.3em] text-gold-400/70 block mb-3">Desde la selva</span>
-                                <p className="font-serif text-2xl text-white/60 italic leading-snug">
-                                    &ldquo;La tierra no produce café. Produce poesía que se puede beber.&rdquo;
-                                </p>
-                                <div className="mt-6 w-12 h-px bg-gold-400/30" />
-                            </div>
-
-                            {/* Coordinates */}
-                            <div className="absolute top-6 right-6 font-mono text-[9px] text-white/15 text-right">
-                                <span className="block">6.3917° S</span>
-                                <span className="block">77.4833° W</span>
-                            </div>
+                                    <div className="absolute bottom-8 left-8 right-8">
+                                        <span className="text-[9px] uppercase tracking-[0.3em] text-gold-400/70 block mb-3">
+                                            {link.description}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
