@@ -129,6 +129,7 @@ export default function Origins() {
 
     return (
         <section
+            id="origins"
             ref={sectionRef}
             className="relative w-full bg-[#060a06] text-white overflow-hidden"
         >
@@ -508,10 +509,10 @@ export default function Origins() {
                                         <div className="absolute top-3 left-0">
                                             <div
                                                 className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${isActive
-                                                        ? "border-gold-400 bg-gold-400 scale-125 shadow-[0_0_12px_rgba(212,175,55,0.5)]"
-                                                        : isPast
-                                                            ? "border-gold-400/50 bg-gold-400/20"
-                                                            : "border-white/15 bg-transparent"
+                                                    ? "border-gold-400 bg-gold-400 scale-125 shadow-[0_0_12px_rgba(212,175,55,0.5)]"
+                                                    : isPast
+                                                        ? "border-gold-400/50 bg-gold-400/20"
+                                                        : "border-white/15 bg-transparent"
                                                     }`}
                                             />
                                         </div>
