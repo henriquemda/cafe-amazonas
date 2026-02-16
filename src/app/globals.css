@@ -249,3 +249,106 @@ body {
   z-index: 5;
   will-change: transform, opacity;
 }
+
+/* ═══════════════════════════════
+   ORIGINS SECTION ANIMATIONS
+   Cartographic & atmospheric FX
+   ═══════════════════════════════ */
+
+/* River flow (dash offset) */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/* Topographic contour drift */
+@keyframes topo-pulse {
+  0%, 100% {
+    opacity: 0.03;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.08;
+    transform: scale(1.02);
+  }
+}
+
+/* Marker ping */
+@keyframes marker-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Slow rotate for atmosphere */
+@keyframes slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Counter rotate */
+@keyframes slow-rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Reveal upward with elastic */
+@keyframes reveal-up-elastic {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  60% {
+    transform: translateY(-8px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Horizontal scan line */
+@keyframes scan-line {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Content slide transition */
+@keyframes content-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-reveal-up {
+  animation: reveal-up-elastic 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-content-slide {
+  animation: content-slide-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Journey timeline connector */
+@keyframes draw-line {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+/* Number counter pulse */
+@keyframes stat-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
