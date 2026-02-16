@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import { ArrowUpRight, ShoppingBag, Star, Filter, Coffee } from "lucide-react";
+import Footer from "@/components/Footer";
+import { ArrowUpRight, ShoppingBag, Star, Filter } from "lucide-react";
 
 /* ────────────────────────────────────────
    DATA: The curated artifacts
@@ -227,14 +228,9 @@ export default function TiendaPage() {
                 </div>
 
                 {/* ── FOOTER NOTE ── */}
-                <div className="mt-32 text-center border-t border-white/5 pt-12 animate-fade-in-up">
-                    <p className="font-serif text-2xl text-white/30 italic">
-                        &ldquo;La selva no produce para el mercado. Produce para la vida.&rdquo;
-                    </p>
-                    <div className="mt-8 flex justify-center items-center gap-2 text-[10px] text-white/20 uppercase tracking-[0.3em]">
-                        <Coffee size={12} />
-                        <span>Café Amazonas &bull; 2026</span>
-                    </div>
+                {/* ── FOOTER ── */}
+                <div className="mt-32">
+                    <Footer />
                 </div>
 
             </main>
