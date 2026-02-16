@@ -16,6 +16,10 @@
 }
 
 /* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #050505;
   color: #f0f0f0;
