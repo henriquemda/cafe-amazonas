@@ -1,14 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowUpRight, ShoppingBag, Star, Filter } from "lucide-react";
+import { ArrowUpRight, ShoppingBag, Star, Filter, X, Plus } from "lucide-react";
 
-/* ────────────────────────────────────────
-   DATA: The curated artifacts
-   ──────────────────────────────────────── */
+/* ── DATA: The Artifacts ── */
 const PRODUCTS = [
     {
         id: 1,
@@ -19,10 +17,10 @@ const PRODUCTS = [
         intensity: 8,
         mood: "balance",
         notes: ["Chocolate", "Caramelo", "Cítricos"],
-        image: "https://picsum.photos/seed/gold/800/800",
+        image: "https://picsum.photos/seed/gold/800/1000",
         description: "El equilibrio perfecto. Cosechado a 1,200m en la cuenca del Río Negro.",
-        accent: "text-gold-400",
-        bgGradient: "from-gold-900/20 to-transparent",
+        color: "#D4AF37", // Gold
+        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)"
     },
     {
         id: 2,
@@ -33,10 +31,10 @@ const PRODUCTS = [
         intensity: 10,
         mood: "intense",
         notes: ["Cacao Puro", "Especias", "Humo"],
-        image: "https://picsum.photos/seed/jaguar/800/800",
+        image: "https://picsum.photos/seed/jaguar/800/1000",
         description: "Para rituales profundos. Un cuerpo denso y salvaje.",
-        accent: "text-indigo-400",
-        bgGradient: "from-indigo-900/20 to-transparent",
+        color: "#6366f1", // Indigo
+        gradient: "radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15), transparent 70%)"
     },
     {
         id: 3,
@@ -47,10 +45,10 @@ const PRODUCTS = [
         intensity: 5,
         mood: "soft",
         notes: ["Jazmín", "Miel", "Té Verde"],
-        image: "https://picsum.photos/seed/river_nature/800/800",
+        image: "https://picsum.photos/seed/river_nature/800/1000",
         description: "Floral y delicado. Como la niebla al amanecer.",
-        accent: "text-emerald-400",
-        bgGradient: "from-emerald-900/20 to-transparent",
+        color: "#34d399", // Emerald
+        gradient: "radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.15), transparent 70%)"
     },
     {
         id: 4,
@@ -61,10 +59,10 @@ const PRODUCTS = [
         intensity: 7,
         mood: "all",
         notes: ["Degustación", "Regalo", "Premium"],
-        image: "https://picsum.photos/seed/bundle/800/800",
+        image: "https://picsum.photos/seed/bundle/800/1000",
         description: "La experiencia completa de la selva. Tres perfiles, un origen.",
-        accent: "text-white",
-        bgGradient: "from-white/10 to-transparent",
+        color: "#ffffff", // White
+        gradient: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 70%)"
     },
 ];
 
@@ -77,159 +75,201 @@ const FILTERS = [
 
 export default function TiendaPage() {
     const [activeFilter, setActiveFilter] = useState("all");
+    const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
+    // Track mouse for subtle parallax
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            setCursorPos({
+                x: (e.clientX / window.innerWidth - 0.5) * 20,
+                y: (e.clientY / window.innerHeight - 0.5) * 20,
+            });
+        };
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
 
     const filteredProducts = activeFilter === "all"
         ? PRODUCTS
         : PRODUCTS.filter(p => p.mood === activeFilter);
 
+    // Dynamic background based on hover
+    const activeGradient = hoveredProduct
+        ? PRODUCTS.find(p => p.id === hoveredProduct)?.gradient
+        : "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 70%)";
+
     return (
-        <div className="min-h-screen bg-[#050a05] text-white selection:bg-gold-500 selection:text-black font-sans">
+        <div className="min-h-screen bg-[#050505] text-white selection:bg-gold-500 selection:text-black font-sans transition-colors duration-1000">
             <Navbar />
 
-            {/* ── ATMOSPHERE LAYER ── */}
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute inset-0 film-grain opacity-20" />
-                <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-gold-500/5 rounded-full blur-[150px]" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-green-900/10 rounded-full blur-[150px]" />
+            {/* ── DYNAMIC ATMOSPHERE ── */}
+            <div className="fixed inset-0 pointer-events-none z-0 transition-all duration-1000 ease-in-out">
+                {/* Base Noise */}
+                <div className="absolute inset-0 film-grain opacity-30" />
+
+                {/* Dynamic Spotlight */}
+                <div
+                    className="absolute inset-0 transition-opacity duration-1000 ease-out"
+                    style={{ background: activeGradient }}
+                />
+
+                {/* Floating Orbs */}
+                <div
+                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-[100px] animate-pulse"
+                    style={{ transform: `translate(${cursorPos.x * -2}px, ${cursorPos.y * -2}px)` }}
+                />
             </div>
 
-            <main className="relative z-10 pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+            <main className="relative z-10 pt-40 pb-20 px-6 md:px-12 max-w-[1600px] mx-auto">
 
-                {/* ── HEADER: The Manifesto ── */}
-                <header className="mb-24 md:mb-32 flex flex-col md:flex-row justify-between items-end gap-12 animate-fade-in-up">
-                    <div className="max-w-2xl">
-                        <span className="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold mb-4 block">
-                            Catálogo de Origen
-                        </span>
-                        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] md:leading-[0.85] tracking-tight text-white mb-8">
-                            Adquiere <br />
-                            <span className="italic text-white/30">Lo Salvaje.</span>
+                {/* ── HEADER: Editorial Layout ── */}
+                <header className="mb-32 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+                    <div className="md:col-span-8">
+                        <div className="overflow-hidden">
+                            <span className="text-gold-400 text-xs uppercase tracking-[0.4em] font-bold mb-6 block animate-fade-in-up">
+                                Catálogo 2026
+                            </span>
+                        </div>
+                        <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tight text-white mix-blend-difference animate-fade-in-up animate-delay-1">
+                            Curaduría <br />
+                            <span className="italic text-white/40 ml-12 md:ml-24">Salvaje</span>
                         </h1>
-                        <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-md border-l border-white/10 pl-6">
-                            Cada paquete es una pieza de la Amazonía. Tostado bajo demanda y enviado directamente desde nuestra finca en Río Negro.
-                        </p>
                     </div>
 
-                    {/* ── FILTERS: Sensory Selector ── */}
-                    <div className="flex flex-col items-end gap-4 w-full md:w-auto">
-                        <span className="text-right text-[9px] uppercase tracking-widest text-white/40 flex items-center gap-2">
-                            <Filter size={10} /> Filtrar por Perfil
-                        </span>
-                        <div className="flex flex-wrap justify-end gap-2">
+                    <div className="md:col-span-4 flex flex-col justify-end items-end animate-fade-in-up animate-delay-2">
+                        <div className="text-right border-l border-white/20 pl-6 mb-8">
+                            <p className="text-white/60 text-sm leading-relaxed max-w-[200px]">
+                                Seleccionados a mano. Tostados con precisión. Enviados desde el origen.
+                            </p>
+                        </div>
+
+                        {/* ── FILTERS ── */}
+                        <div className="flex flex-wrap justify-end gap-3">
                             {FILTERS.map((f) => (
                                 <button
                                     key={f.id}
                                     onClick={() => setActiveFilter(f.id)}
-                                    className={`px-5 py-2 rounded-full text-[10px] uppercase tracking-widest transition-all duration-500 border ${activeFilter === f.id
-                                        ? "bg-gold-400 text-black border-gold-400 shadow-[0_0_20px_rgba(250,204,21,0.3)]"
-                                        : "bg-white/5 text-white/60 border-white/10 hover:border-white/30 hover:bg-white/10"
+                                    className={`relative px-4 py-2 text-[10px] uppercase tracking-widest transition-all duration-500 group overflow-hidden ${activeFilter === f.id ? "text-black" : "text-white/60 hover:text-white"
                                         }`}
                                 >
-                                    {f.label}
+                                    <span className={`absolute inset-0 bg-gold-400 transition-transform duration-500 ease-out ${activeFilter === f.id ? "translate-y-0" : "translate-y-full group-hover:translate-y-[90%]"
+                                        }`} />
+                                    <span className="relative z-10">{f.label}</span>
                                 </button>
                             ))}
                         </div>
                     </div>
                 </header>
 
-                {/* ── GRID: The Artifacts ── */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 md:gap-y-24">
-                    {filteredProducts.map((product) => (
+                {/* ── GRID: Asymmetric Layout ── */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-32">
+                    {filteredProducts.map((product, index) => (
                         <div
                             key={product.id}
-                            className="group relative"
+                            className={`group relative perspective-1000 ${
+                                // Asymmetric Logic:
+                                // Full width rows for immersive items, or split columns
+                                index % 3 === 0 ? "lg:col-span-12 flex flex-col lg:flex-row gap-12 items-center" :
+                                    "lg:col-span-6 flex flex-col"
+                                }`}
+                            onMouseEnter={() => setHoveredProduct(product.id)}
+                            onMouseLeave={() => setHoveredProduct(null)}
                         >
-                            {/* Card Container */}
-                            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-white/[0.02] border border-white/[0.05] group-hover:border-white/[0.1] transition-all duration-700">
-
-                                {/* Dynamic Background Glow */}
-                                <div
-                                    className={`absolute inset-0 bg-gradient-to-br ${product.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out`}
-                                />
-
-                                {/* Product Image */}
-                                <div className="absolute inset-8 md:inset-12 z-10 transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-translate-y-4">
-                                    <div className="relative w-full h-full shadow-2xl shadow-black/50 rounded-lg overflow-hidden grayscale-[50%] group-hover:grayscale-0 transition-all duration-700">
+                            {/* ── VISUAL CONTAINER ── */}
+                            <div className={`relative w-full ${index % 3 === 0 ? "lg:w-[60%] aspect-[16/9] lg:order-2" : "aspect-[4/5]"
+                                }`}>
+                                <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-sm border border-white/10 overflow-hidden transition-all duration-700 group-hover:border-white/20">
+                                    {/* Image with Parallax Hover */}
+                                    <div className="relative w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105">
                                         <Image
                                             src={product.image}
                                             alt={product.name}
                                             fill
-                                            className="object-cover"
+                                            className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 grayscale-[0.2] group-hover:grayscale-0"
                                         />
+
+                                        {/* Overlay Gradient */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                                    </div>
+
+                                    {/* Instant Action Overlay */}
+                                    <div className="absolute bottom-0 left-0 w-full p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out flex items-center justify-between bg-black/40 backdrop-blur-xl border-t border-white/10">
+                                        <span className="text-xs font-serif italic text-white/80">
+                                            Añadir al Carrito
+                                        </span>
+                                        <button className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gold-400 transition-colors">
+                                            <Plus size={18} />
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
 
-                                {/* Overlay Details (Initial State) */}
-                                <div className="absolute top-6 left-6 z-20">
-                                    <span className={`text-[9px] uppercase tracking-[0.2em] font-bold px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 ${product.accent}`}>
+                            {/* ── INFORMATION CONTAINER ── */}
+                            <div className={`flex flex-col ${index % 3 === 0 ? "lg:w-[40%] lg:order-1 lg:items-end lg:text-right" : "mt-8"
+                                }`}>
+                                {/* ID Number */}
+                                <span className="font-mono text-xs text-white/20 mb-4 block">
+                                    0{product.id} — {product.mood}
+                                </span>
+
+                                {/* Title Group */}
+                                <div className="mb-6 relative">
+                                    <h2
+                                        className="font-serif text-4xl md:text-5xl lg:text-6xl text-white group-hover:text-transparent group-hover:bg-clip-text transition-all duration-500"
+                                        style={{
+                                            // Dynamic inline style for gradient text on hover
+                                            backgroundImage: `linear-gradient(to right, #fff, ${product.color})`
+                                        }}
+                                    >
+                                        {product.name}
+                                    </h2>
+                                    <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 mt-2">
                                         {product.tagline}
-                                    </span>
+                                    </p>
                                 </div>
 
-                                <div className="absolute top-6 right-6 z-20">
-                                    <span className="text-xl font-serif text-white drop-shadow-lg">
+                                {/* Flavor Tags */}
+                                <div className={`flex flex-wrap gap-2 mb-8 ${index % 3 === 0 ? "justify-end" : "justify-start"}`}>
+                                    {product.notes.map((note) => (
+                                        <span
+                                            key={note}
+                                            className="px-3 py-1 text-[9px] uppercase tracking-wider border border-white/10 text-white/60 rounded-full group-hover:border-[var(--active-color)] group-hover:text-white transition-colors duration-500"
+                                            style={{ "--active-color": product.color } as React.CSSProperties}
+                                        >
+                                            {note}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Description */}
+                                <p className={`text-sm text-gray-400 leading-relaxed max-w-sm mb-8 ${index % 3 === 0 ? "text-right" : ""}`}>
+                                    {product.description}
+                                </p>
+
+                                {/* Price & Main Action */}
+                                <div className={`flex items-center gap-6 ${index % 3 === 0 ? "flex-row-reverse" : ""}`}>
+                                    <span className="font-serif text-3xl text-white">
                                         ${product.price}
                                     </span>
-                                </div>
-
-                                {/* Hover Reveal Layer */}
-                                <div className="absolute inset-0 z-30 flex flex-col justify-end p-8 md:p-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
-
-                                    {/* Tasting Notes */}
-                                    <div className="flex gap-2 mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                                        {product.notes.map((note) => (
-                                            <span key={note} className="text-[9px] text-white/80 bg-white/10 backdrop-blur px-2 py-1 rounded border border-white/10">
-                                                {note}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <h3 className="text-3xl font-serif text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-                                        {product.name}
-                                    </h3>
-
-                                    <p className="text-xs text-gray-300 leading-relaxed max-w-xs mb-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200">
-                                        {product.description}
-                                    </p>
-
-                                    {/* Action Button */}
-                                    <button className="w-full py-4 bg-white text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-gold-400 transition-colors duration-300 flex items-center justify-center gap-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-300 rounded-lg">
-                                        <span>Añadir al Ritual</span>
-                                        <ArrowUpRight size={14} />
+                                    <div className="h-px w-12 bg-white/20" />
+                                    <button className="group/btn flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-white hover:text-gold-400 transition-colors">
+                                        Ver Detalles
+                                        <ArrowUpRight size={14} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                     </button>
                                 </div>
-
                             </div>
-
-                            {/* Minimal Info Below Card (Visible when not hovering, fades out on hover) */}
-                            <div className="mt-6 px-2 flex justify-between items-start opacity-100 group-hover:opacity-30 transition-opacity duration-500">
-                                <div>
-                                    <h3 className="text-lg text-white font-medium tracking-wide">{product.name}</h3>
-                                    <div className="flex items-center gap-2 mt-1">
-                                        <div className="flex">
-                                            {[...Array(5)].map((_, i) => (
-                                                <Star
-                                                    key={i}
-                                                    size={10}
-                                                    className={`${i < Math.floor(product.intensity / 2) ? "fill-white/40 text-transparent" : "text-white/10"}`}
-                                                />
-                                            ))}
-                                        </div>
-                                        <span className="text-[10px] text-white/40 uppercase tracking-wider">{product.roast}</span>
-                                    </div>
-                                </div>
-                                <button className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/40 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
-                                    <ShoppingBag size={12} />
-                                </button>
-                            </div>
-
                         </div>
                     ))}
                 </div>
 
-                {/* ── FOOTER NOTE ── */}
-                {/* ── FOOTER ── */}
-                <div className="mt-32">
+                {/* ── FOOTER MARKER ── */}
+                <div className="mt-48 flex flex-col items-center justify-center opacity-30">
+                    <span className="font-serif italic text-2xl mb-4">Fin del Catálogo</span>
+                    <div className="w-px h-24 bg-white" />
+                </div>
+
+                <div className="mt-20">
                     <Footer />
                 </div>
 

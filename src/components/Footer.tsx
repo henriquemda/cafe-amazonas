@@ -88,7 +88,7 @@ export default function Footer() {
                     </div>
 
                     <span className="text-[10px] uppercase tracking-widest text-white/20 order-first md:order-last block mb-8 md:mb-0">
-                        © 2025 Café Amazonas. Todos los derechos reservados.
+                        © 2026 Café Amazonas. Todos los derechos reservados.
                     </span>
                 </div>
 

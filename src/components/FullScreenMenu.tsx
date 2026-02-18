@@ -221,7 +221,7 @@ export default function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps)
 
                     {/* Brand stamp */}
                     <span className="text-[9px] uppercase tracking-[0.3em] text-white/15">
-                        Café Amazonas © 2025
+                        Café Amazonas © 2026
                     </span>
                 </div>
             </div>
