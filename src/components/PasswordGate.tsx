@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Lock, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function PasswordGate({
     children,
@@ -14,25 +14,12 @@ export default function PasswordGate({
     const [error, setError] = useState(false);
     const [isFadingOut, setIsFadingOut] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    const [particles, setParticles] = useState<{ left: string; top: string; size: string; duration: string; delay: string; }[]>([]);
-
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setParticles(Array.from({ length: 20 }).map(() => ({
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            size: Math.random() > 0.5 ? "2px" : "3px",
-            duration: `${3 + Math.random() * 5}s`,
-            delay: `-${Math.random() * 5}s`,
-        })));
-    }, []);
 
     // Check storage on mount
     useEffect(() => {
         if (typeof window !== "undefined") {
             const storedAuth = window.sessionStorage.getItem("amaruya_access");
             if (storedAuth === "granted") {
-                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setIsUnlocked(true);
             }
             setIsLoading(false);
@@ -48,6 +35,7 @@ export default function PasswordGate({
 
     const handleSubmit = (e?: React.FormEvent) => {
         e?.preventDefault();
+        // Constant Time Comparison / Easter Egg Check
         if (inputValue === "Amazonasperu7") {
             setError(false);
             setIsFadingOut(true);
@@ -56,10 +44,13 @@ export default function PasswordGate({
             }
             setTimeout(() => {
                 setIsUnlocked(true);
-            }, 1500); // 1.5s for the exit animation
+            }, 1800); // Wait for the whiteout explosion
         } else {
             setError(true);
-            setInputValue("");
+            setTimeout(() => {
+                setInputValue("");
+            }, 300); // Clear after shudder animation
+
             // Reset error after animation
             setTimeout(() => setError(false), 2000);
         }
@@ -72,109 +63,119 @@ export default function PasswordGate({
     // Initial loader state
     if (isLoading) {
         return (
-            <div className="fixed inset-0 z-50 bg-[#0a0f0a] flex items-center justify-center">
-                <div className="w-2 h-2 bg-[var(--color-gold-400)] rounded-full animate-ping" />
+            <div className="fixed inset-0 z-50 bg-[#030603] flex items-center justify-center">
+                <div className="w-[1px] h-12 bg-gradient-to-t from-[var(--color-gold-500)] to-transparent animate-pulse" />
             </div>
         );
     }
 
     return (
         <div
-            className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a0f0a] transition-all duration-1000 overflow-hidden ${isFadingOut ? "opacity-0 scale-105 pointer-events-none" : "opacity-100 scale-100"
+            className={`fixed inset-0 z-[9999] bg-[#030603] overflow-hidden transition-all duration-[1.5s] cubic-bezier(0.19,1,0.22,1) ${isFadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
                 }`}
         >
-            {/* ── Background Effects ── */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1a2f1a_0%,_#000000_100%)] opacity-80" />
+            {/* ── Atmospheric Depth & Film Grain ── */}
+            <div className={`absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_1b3320_0%,_transparent_40%)] opacity-30 pointer-events-none transition-opacity duration-1000 ${inputValue ? 'opacity-60' : ''}`} />
+            <div className="absolute inset-0 film-grain opacity-40 pointer-events-none mix-blend-overlay" />
 
-            {/* Film Grain from globals */}
-            <div className="absolute inset-0 film-grain opacity-30 pointer-events-none" />
-
-            {/* Floating Particles - Simulated via CSS and simple inline styles */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {particles.map((p, i) => (
-                    <div
-                        key={i}
-                        className="absolute rounded-full bg-[var(--color-gold-400)] opacity-20 animate-pulse"
-                        style={{
-                            left: p.left,
-                            top: p.top,
-                            width: p.size,
-                            height: p.size,
-                            animationDuration: p.duration,
-                            animationDelay: p.delay,
-                        }}
-                    />
-                ))}
+            {/* ── Monolithic Watermark ── */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] font-serif text-[18vw] leading-none text-white/[0.015] tracking-[0.2em] uppercase select-none pointer-events-none mix-blend-screen whitespace-nowrap animate-scale-reveal blur-[1px]">
+                Amazonas
             </div>
 
-            {/* ── Main Content Container ── */}
-            <div className={`relative z-10 w-full max-w-md px-8 flex flex-col items-center transition-all duration-700 ${isFadingOut ? "blur-md scale-90" : "blur-0 scale-100"}`}>
+            {/* ── Alignment Axis ── */}
+            <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-[25vh] bg-gradient-to-b from-transparent to-[var(--color-gold-500)]/30 animate-line-grow transition-all duration-1000 ${inputValue ? 'h-[35vh] to-[var(--color-gold-400)]/50' : ''}`} />
+            <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] h-[15vh] bg-gradient-to-t from-transparent to-[var(--color-gold-500)]/10 animate-line-grow transition-all duration-1000 ${inputValue ? 'h-[20vh]' : ''}`} />
 
-                {/* Mystic Icon */}
-                <div className="mb-12 relative group cursor-default">
-                    <div className={`absolute inset-0 bg-[var(--color-gold-400)] rounded-full blur-2xl opacity-10 transition-opacity duration-500 group-hover:opacity-30 ${error ? '!bg-red-600 !opacity-40' : ''}`} />
-                    <div className={`relative border border-[var(--color-gold-500)]/20 rounded-full p-6 bg-black/40 backdrop-blur-sm shadow-2xl transition-all duration-300 ${error ? 'border-red-500/50 shadow-red-900/20' : ''}`}>
-                        <Sparkles
-                            className={`w-8 h-8 ${error ? 'text-red-400' : 'text-[var(--color-gold-300)]'} transition-colors duration-300`}
-                            strokeWidth={1}
-                        />
+            {/* ── Central Stage ── */}
+            <div className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-[1.8s] cubic-bezier(0.19,1,0.22,1) ${isFadingOut ? "scale-110 blur-2xl opacity-0" : "scale-100 blur-0 opacity-100"
+                }`}>
+
+                {/* The Geometric Relic */}
+                <div className="relative w-20 h-20 mb-12 animate-fade-in-up">
+                    <div className={`absolute inset-0 bg-[var(--color-gold-400)]/5 blur-2xl rounded-full transition-all duration-1000 ease-out ${inputValue ? 'bg-[var(--color-gold-400)]/30 scale-150' : ''}`} />
+
+                    {/* Outer Square */}
+                    <div className={`absolute inset-2 border-[0.5px] border-white/20 rotate-45 transition-all duration-1000 ease-out ${error ? 'border-red-900/50 -rotate-45' : inputValue ? 'rotate-90 border-[var(--color-gold-500)]/40 scale-110' : ''
+                        }`} />
+
+                    {/* Inner Square */}
+                    <div className={`absolute inset-5 border-[0.5px] border-[var(--color-gold-500)]/30 transition-all duration-1000 ease-out ${error ? 'border-red-500/50 rotate-45' : inputValue ? 'rotate-45 border-[var(--color-gold-300)]/60 scale-90' : 'rotate-12'
+                        }`} />
+
+                    {/* Core Core */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className={`w-1.5 h-1.5 rounded-full transition-all duration-700 ease-out ${error ? 'bg-red-500 shadow-[0_0_15px_#ef4444] scale-150' : inputValue ? 'bg-[var(--color-gold-200)] shadow-[0_0_15px_var(--color-gold-300)] scale-150' : 'bg-[var(--color-gold-500)]/50'
+                            }`} />
                     </div>
                 </div>
 
-                {/* Title */}
-                <h1 className="font-serif text-4xl md:text-5xl text-[var(--color-gold-300)] tracking-[0.2em] mb-4 text-center uppercase animate-fade-in-up drop-shadow-lg">
-                    Café Amazonas
-                </h1>
-                <p className="font-sans text-[10px] md:text-xs text-white/40 tracking-[0.4em] mb-16 uppercase animate-fade-in-up animate-delay-1">
-                    La Puerta del Origen
-                </p>
-
-                {/* Input Form */}
-                <form onSubmit={handleSubmit} className="w-full relative group animate-fade-in-up animate-delay-2 max-w-xs mx-auto">
-                    {/* Glow Effect on Hover/Focus */}
-                    <div className={`absolute -inset-0.5 rounded-lg opacity-30 blur transition-all duration-500 group-hover:opacity-50 ${error ? 'bg-red-900 opacity-60' : 'bg-[var(--color-gold-500)]'}`} />
-
-                    <div className={`relative flex items-center bg-[#050a05]/90 border border-white/10 rounded-lg overflow-hidden backdrop-blur-md transition-colors duration-300 ${error ? 'border-red-500/30' : 'focus-within:border-[var(--color-gold-500)]/40'}`}>
-                        <div className="pl-4 text-white/20">
-                            <Lock className="w-4 h-4" />
-                        </div>
-
-                        <input
-                            ref={inputRef}
-                            type="password"
-                            value={inputValue}
-                            onChange={(e) => {
-                                setInputValue(e.target.value);
-                                if (error) setError(false);
-                            }}
-                            placeholder="Contraseña..."
-                            className="w-full bg-transparent border-none text-[var(--color-gold-100)] placeholder:text-white/10 px-4 py-4 focus:ring-0 focus:outline-none font-sans tracking-[0.2em] text-sm text-center"
-                            autoComplete="off"
-                            autoCapitalize="none"
-                        />
-
-                        <button
-                            type="submit"
-                            className={`pr-4 pl-2 text-white/20 hover:text-[var(--color-gold-400)] transition-all duration-300 ${!inputValue ? 'opacity-0 pointer-events-none width-0' : 'opacity-100'}`}
-                        >
-                            <ArrowRight className="w-4 h-4" />
-                        </button>
+                {/* Typography Architecture */}
+                <div className="flex flex-col items-center animate-fade-in-up animate-delay-1">
+                    <h2 className="font-sans text-[7px] md:text-[9px] text-[var(--color-gold-500)] tracking-[0.5em] md:tracking-[0.8em] uppercase mb-6 opacity-70">
+                        Sanctuary Protocol
+                    </h2>
+                    <h1 className="font-serif text-3xl md:text-5xl text-white/90 tracking-[0.2em] md:tracking-[0.3em] uppercase mix-blend-plus-lighter text-center font-light">
+                        La Puerta
+                    </h1>
+                    <div className="flex items-center gap-6 mt-6">
+                        <div className={`w-8 h-[1px] bg-white/20 transition-all duration-500 ${inputValue ? 'w-12 bg-[var(--color-gold-500)]/50' : ''}`} />
+                        <span className="font-sans text-[8px] md:text-[10px] text-white/50 tracking-[0.4em] uppercase">Del Origen</span>
+                        <div className={`w-8 h-[1px] bg-white/20 transition-all duration-500 ${inputValue ? 'w-12 bg-[var(--color-gold-500)]/50' : ''}`} />
                     </div>
+                </div>
 
-                    {/* Error Message */}
-                    <div className={`absolute top-full left-0 w-full text-center mt-6 transition-all duration-500 pointer-events-none transform ${error ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-                        <p className="text-red-400/90 text-[10px] tracking-[0.3em] uppercase font-sans font-bold drop-shadow-md">
-                            Acceso Denegado
+                {/* The Void Form */}
+                <form
+                    onSubmit={handleSubmit}
+                    className={`mt-24 w-full max-w-xs relative flex flex-col items-center animate-fade-in-up animate-delay-2 transition-transform duration-300 ${error ? 'translate-x-2' : ''}`}
+                >
+                    <input
+                        ref={inputRef}
+                        type="password"
+                        value={inputValue}
+                        onChange={(e) => {
+                            setInputValue(e.target.value);
+                            if (error) setError(false);
+                        }}
+                        className={`peer relative z-20 w-full bg-transparent text-center text-lg md:text-xl tracking-[0.6em] focus:outline-none focus:ring-0 py-3 transition-colors duration-500 font-serif ${error ? 'text-red-400' : 'text-[var(--color-gold-100)]'
+                            }`}
+                        spellCheck="false"
+                        autoCapitalize="none"
+                        autoComplete="off"
+                    />
+
+                    {/* Structural Infinity Line */}
+                    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/5" />
+
+                    {/* Living Focus Line */}
+                    <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
+                        ${inputValue.length > 0 ? 'w-full bg-[var(--color-gold-400)] shadow-[0_0_10px_var(--color-gold-500)]' : 'w-0 bg-transparent peer-focus:w-full peer-focus:bg-[var(--color-gold-500)]/50'}
+                        ${error ? '!w-full !bg-red-600 !shadow-[0_0_20px_#991b1b]' : ''}
+                    `} />
+
+                    {/* Execution Action */}
+                    <button
+                        type="submit"
+                        className={`absolute -right-12 top-1/2 -translate-y-1/2 text-[var(--color-gold-500)]/50 hover:text-[var(--color-gold-300)] transition-all duration-[0.8s] cubic-bezier(0.19,1,0.22,1) ${inputValue.length > 0 ? 'opacity-100 translate-x-0 cursor-pointer scale-100' : 'opacity-0 -translate-x-8 pointer-events-none scale-75'
+                            }`}
+                    >
+                        <ArrowRight className="w-5 h-5" strokeWidth={1} />
+                    </button>
+
+                    {/* Error Feedback */}
+                    <div className={`absolute top-full mt-8 overflow-hidden transition-all duration-500 ${error ? 'opacity-100' : 'opacity-0'}`}>
+                        <p className={`font-sans text-[9px] uppercase tracking-[0.4em] text-red-500/80 transition-transform duration-500 ${error ? 'translate-y-0' : '-translate-y-full'}`}>
+                            Access Revoked
                         </p>
                     </div>
                 </form>
 
-                {/* Footer Hint */}
-                <div className="mt-32 opacity-10 text-[9px] text-center font-sans tracking-[0.3em] animate-fade-in-up animate-delay-3">
-                    SECURE TERMINAL • V1.0
-                </div>
-
             </div>
+
+            {/* ── Transcendent Explosion (Success State) ── */}
+            <div className={`absolute inset-0 bg-[var(--color-gold-100)] z-50 transition-opacity duration-[1.5s] ease-in pointer-events-none mix-blend-overlay ${isFadingOut ? 'opacity-100' : 'opacity-0'
+                }`} />
         </div>
     );
 }
