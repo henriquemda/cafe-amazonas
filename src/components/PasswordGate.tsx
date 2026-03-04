@@ -36,7 +36,7 @@ export default function PasswordGate({
     const handleSubmit = (e?: React.FormEvent) => {
         e?.preventDefault();
         // Constant Time Comparison / Easter Egg Check
-        if (inputValue === "Amazonasperu7") {
+        if (inputValue === "TiendaAmazonas@") {
             setError(false);
             setIsFadingOut(true);
             if (typeof window !== "undefined") {
