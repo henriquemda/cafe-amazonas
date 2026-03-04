@@ -29,7 +29,7 @@ export default function Navbar() {
                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hover:scale-105 transition-transform duration-500 cursor-pointer z-10"
                 >
                     <Image
-                        src="/AmaruyaLogo.webp"
+                        src="/cafeamazonas-logo.webp"
                         alt="Café Amazonas"
                         width={160}
                         height={64}

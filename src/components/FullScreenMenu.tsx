@@ -107,7 +107,7 @@ export default function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps)
                     {/* Logo */}
                     <div className={`transition-all duration-700 delay-200 ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
                         <Image
-                            src="/AmaruyaLogo.webp"
+                            src="/cafeamazonas-logo.webp"
                             alt="Café Amazonas"
                             width={120}
                             height={48}

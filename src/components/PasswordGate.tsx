@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function PasswordGate({
     children,
@@ -112,6 +113,14 @@ export default function PasswordGate({
 
                 {/* Typography Architecture */}
                 <div className="flex flex-col items-center animate-fade-in-up animate-delay-1">
+                    <Image
+                        src="/cafeamazonas-logo.webp"
+                        alt="Café Amazonas"
+                        width={240}
+                        height={96}
+                        className="h-20 md:h-24 w-auto object-contain mb-8 drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
+                        priority
+                    />
                     <h2 className="font-sans text-[7px] md:text-[9px] text-[var(--color-gold-500)] tracking-[0.5em] md:tracking-[0.8em] uppercase mb-6 opacity-70">
                         Sanctuary Protocol
                     </h2>
