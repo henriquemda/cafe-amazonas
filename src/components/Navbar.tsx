@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, Search, ShoppingBag } from "lucide-react";
@@ -8,10 +8,23 @@ import FullScreenMenu from "./FullScreenMenu";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <>
-            <nav className="absolute top-0 left-0 w-full z-50 px-6 py-8 md:px-12 flex justify-between items-center">
+            <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 flex justify-between items-center ${scrolled
+                ? "px-6 py-4 md:px-12 bg-[#030603]/70 backdrop-blur-md border-b border-white/[0.05] shadow-2xl"
+                : "px-6 py-8 md:px-12 bg-transparent border-b border-transparent shadow-none"
+                }`}>
                 {/* Left Links — Deep Glass Pill */}
                 <div className="hidden md:flex items-center p-1.5 rounded-full bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_8px_20px_-4px_rgba(0,0,0,0.5)]">
                     <div className="flex items-center gap-1 px-4 py-2 rounded-full border border-white/[0.02] bg-black/20">
@@ -33,7 +46,8 @@ export default function Navbar() {
                         alt="Café Amazonas"
                         width={160}
                         height={64}
-                        className="h-14 md:h-16 w-auto object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
+                        className={`w-auto object-contain transition-all duration-500 drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] ${scrolled ? "h-10 md:h-12" : "h-14 md:h-16"
+                            }`}
                         priority
                     />
                 </Link>
