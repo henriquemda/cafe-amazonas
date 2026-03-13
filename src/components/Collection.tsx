@@ -51,26 +51,7 @@ export default function Collection() {
             </div>
 
             <div className="relative container mx-auto px-6 md:px-12">
-                {/* ═══ HEADER ═══ */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-                    <div>
-                        <span className="text-gold-400 text-[10px] uppercase tracking-[0.25em] font-bold block mb-4">
-                            Nuestra Colección
-                        </span>
-                        <h2 className="font-serif text-4xl md:text-6xl text-white leading-tight">
-                            Tesoros de <br />
-                            <span className="italic text-gray-500">Origen Único</span>
-                        </h2>
-                    </div>
-                    <div className="max-w-md text-gray-400 text-sm leading-relaxed border-l border-white/10 pl-6">
-                        <p>
-                            Cada grano cuenta una historia de biodiversidad. Cultivados en
-                            sombra, cosechados a mano y procesados con métodos que respetan el
-                            ciclo vital de la selva.
-                        </p>
-                    </div>
-                </div>
-
+    
                 {/* ═══ CARDS GRID ═══ */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {COFFEES.map((coffee) => (
