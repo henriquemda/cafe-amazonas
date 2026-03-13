@@ -19,7 +19,7 @@ const NAV_LINKS = [
     { href: "/", label: "Inicio", description: "La puerta de la selva", image: "https://picsum.photos/seed/jungle/600/800" },
     { href: "/tienda", label: "Tienda", description: "Adquiere lo salvaje", image: "https://picsum.photos/seed/coffee_bag/600/800" },
     { href: "#origins", label: "Origen", description: "Mendoza, Amazonas", image: "https://picsum.photos/seed/mendoza_forest/600/800" },
-    { href: "#", label: "Impacto", description: "Nuestra huella verde", image: "https://picsum.photos/seed/farmer/600/800" },
+    { href: "/impacto", label: "Impacto", description: "Nuestra huella verde", image: "https://picsum.photos/seed/farmer/600/800" },
     { href: "#", label: "Contacto", description: "Conversa con nosotros", image: "https://picsum.photos/seed/pour_over/600/800" },
 ];
 
