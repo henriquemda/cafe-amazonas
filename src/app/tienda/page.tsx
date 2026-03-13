@@ -509,7 +509,7 @@ export default function TiendaPage() {
                                 {/* Price & Neuromarketing Primary CTA */}
                                 <div className={`flex items-center gap-4 ${product.isHero ? "flex-row-reverse" : ""}`}>
                                     <span className={`font-serif text-white ${product.isHero ? "text-3xl" : "text-2xl"}`}>
-                                        ${product.price}
+                                        S/{product.price}
                                     </span>
                                     <div className="h-px w-4 bg-white/20" />
                                     <button 

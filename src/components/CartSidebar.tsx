@@ -59,10 +59,10 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
             message += `*${index + 1}. ${item.name}*\n`;
             if (item.roast) message += `   ├ Opciones: ${item.roast}\n`;
             message += `   ├ Cantidad: ${item.quantity}\n`;
-            message += `   └ Subtotal: $${(item.price * item.quantity).toFixed(2)}\n\n`;
+            message += `   └ Subtotal: S/${(item.price * item.quantity).toFixed(2)}\n\n`;
         });
 
-        message += `*Total a pagar: $${subtotal.toFixed(2)}*\n\n`;
+        message += `*Total a pagar: S/${subtotal.toFixed(2)}*\n\n`;
         message += "¡Quedo a la espera de sus indicaciones para coordinar el pago y envío! ✨";
 
         const encodedMessage = encodeURIComponent(message);
@@ -173,7 +173,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                                                 </button>
                                             </div>
                                             <span className="font-serif text-lg text-white">
-                                                ${(item.price * item.quantity).toFixed(2)}
+                                                S/{(item.price * item.quantity).toFixed(2)}
                                             </span>
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                             Subtotal
                         </span>
                         <span className="font-serif text-xl text-white">
-                            ${subtotal.toFixed(2)}
+                            S/{subtotal.toFixed(2)}
                         </span>
                     </div>
                     <button 
