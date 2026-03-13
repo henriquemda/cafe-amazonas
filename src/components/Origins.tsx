@@ -166,7 +166,11 @@ export default function Origins() {
                             fill="none"
                             stroke="white"
                             strokeWidth="0.5"
-                            style={{ animation: `topo-pulse ${8 + i * 2}s ease-in-out infinite`, animationDelay: `${i * 0.5}s` }}
+                            style={{ 
+                                animation: `topo-pulse ${8 + i * 2}s ease-in-out infinite`, 
+                                animationDelay: `${i * 0.5}s`,
+                                transformOrigin: `${350 + i * 15}px ${400 + i * 8}px`
+                            }}
                         />
                     ))}
                 </svg>
@@ -296,7 +300,10 @@ export default function Origins() {
                                                         stroke={stop.color}
                                                         strokeWidth="0.5"
                                                         opacity="0.4"
-                                                        style={{ animation: "marker-ping 2s ease-out infinite" }}
+                                                        style={{ 
+                                                            animation: "marker-ping 2s ease-out infinite",
+                                                            transformOrigin: `${stop.mapPos.x}px ${stop.mapPos.y}px`
+                                                        }}
                                                     />
                                                 </>
                                             )}
