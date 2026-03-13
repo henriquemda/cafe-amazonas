@@ -425,9 +425,56 @@ export default function TiendaPage() {
                     </div>
                 </header>
 
-                {/* ── GRID: Compact E-Commerce Layout ── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-24">
-                    {filteredProducts.map((product) => (
+                {/* ── CATALOG RENDERING (Brand Grouped) ── */}
+                <div className="flex flex-col gap-40">
+                    {[
+                        {
+                            id: "timbuyacu",
+                            title: "Finca Timbuyacu",
+                            description: "El cultivo insignia de la familia. Desde la línea clásica hasta microlotes de edición limitada y experiencias amazónicas.",
+                            brands: ["timbuyacu", "limitada", "filter", "experiencia", "merch"]
+                        },
+                        {
+                            id: "buenamoza",
+                            title: "Buenamoza (Café Mujer)",
+                            description: "Producido íntegramente por María Dorila Vargas Grandez y mujeres cafetaleras de Rodríguez de Mendoza. Un homenaje al empoderamiento agrícola.",
+                            brands: ["buenamoza"]
+                        },
+                        {
+                            id: "monteverde",
+                            title: "Café Monteverde",
+                            description: "La línea tradicional de Amazonas. Perfiles limpios, dulces y con vibrante acidez mandarina.",
+                            brands: ["monteverde"]
+                        }
+                    ].map((brandGroup) => {
+                        // Get products belonging to this specific brand group
+                        const groupProducts = filteredProducts.filter(p => brandGroup.brands.includes(p.mood));
+
+                        // Hide the entire section if no products match the current filter
+                        if (groupProducts.length === 0) return null;
+
+                        return (
+                            <section key={brandGroup.id} className="relative w-full block">
+                                {/* Brand Header */}
+                                <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-8">
+                                    <div className="max-w-xl">
+                                        <h2 className="font-serif text-4xl md:text-6xl text-white mb-4">
+                                            {brandGroup.title}
+                                        </h2>
+                                        <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">
+                                            {brandGroup.description}
+                                        </p>
+                                    </div>
+                                    <div className="hidden md:block">
+                                        <span className="font-mono text-[10px] uppercase tracking-widest text-gold-400">
+                                            {groupProducts.length} {groupProducts.length === 1 ? 'Producto' : 'Productos'}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Compact Grid for this Brand */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-24">
+                                    {groupProducts.map((product) => (
                         <div
                             key={product.id}
                             className={`group relative perspective-1000 ${
@@ -532,6 +579,10 @@ export default function TiendaPage() {
                             </div>
                         </div>
                     ))}
+                                </div>
+                            </section>
+                        );
+                    })}
                 </div>
 
                 {/* ── FOOTER MARKER ── */}
