@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Sun } from "lucide-react";
 
 /* ────────────────────────────────────────
@@ -117,9 +118,12 @@ export default function Collection() {
                                     </div>
 
                                     {/* Action */}
-                                    <button className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-white group-hover:text-gold-400 transition-colors">
+                                    <Link 
+                                        href={`/tienda#${coffee.id}`}
+                                        className="mt-8 flex items-center w-max gap-2 text-xs uppercase tracking-widest font-bold text-white group-hover:text-gold-400 transition-colors"
+                                    >
                                         Comprar Ahora <ArrowRight size={14} />
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
