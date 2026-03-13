@@ -6,10 +6,12 @@ import Image from "next/image";
 import { Menu, Search, ShoppingBag } from "lucide-react";
 import FullScreenMenu from "./FullScreenMenu";
 import CartSidebar from "./CartSidebar";
+import SearchOverlay from "./SearchOverlay";
 import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const { isCartOpen, setIsCartOpen, totalItems } = useCart();
     const [scrolled, setScrolled] = useState(false);
 
@@ -42,9 +44,9 @@ export default function Navbar() {
                     
                     {/* The Utility Icons - Left on Mobile Only */}
                     <div className="flex gap-2 lg:hidden">
-                        {/* Hide search on mobile to prevent logo overlap */}
+                        {/* Search trigger on mobile */}
                         <div className="hidden sm:block">
-                            <IconButton icon={Search} />
+                            <IconButton icon={Search} onClick={() => setIsSearchOpen(true)} />
                         </div>
                         <IconButton icon={ShoppingBag} badge={totalItems > 0} onClick={() => setIsCartOpen(true)} />
                     </div>
@@ -72,17 +74,18 @@ export default function Navbar() {
                 <div className="flex-1 flex justify-end items-center gap-2 md:gap-4 z-20">
                     {/* Desktop Utilities (Search + Cart) */}
                     <div className="hidden lg:flex items-center gap-4">
-                        {/* Dynamic Glass Search Input */}
-                        <div className="flex items-center p-1 rounded-full bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_8px_20px_-4px_rgba(0,0,0,0.5)] transition-all duration-500 w-[240px] focus-within:w-[300px]">
-                            <div className="flex items-center w-full px-4 rounded-full border border-white/[0.02] bg-black/20 focus-within:bg-black/40 transition-colors duration-300">
-                                <Search size={16} className="text-white/40 mr-3" />
-                                <input 
-                                    type="text" 
-                                    placeholder="Buscar orígenes..." 
-                                    className="w-full bg-transparent border-none outline-none text-[11px] uppercase tracking-widest text-white placeholder-white/30 py-2.5 font-medium"
-                                />
+                        {/* Dynamic Glass Search Trigger */}
+                        <button 
+                            onClick={() => setIsSearchOpen(true)}
+                            className="flex items-center p-1 rounded-full bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_8px_20px_-4px_rgba(0,0,0,0.5)] transition-all duration-500 w-[240px] hover:w-[260px] group cursor-text"
+                        >
+                            <div className="flex items-center w-full px-4 rounded-full border border-white/[0.02] bg-black/20 group-hover:bg-black/40 transition-colors duration-300">
+                                <Search size={16} className="text-white/40 group-hover:text-[#C5A028] transition-colors duration-300 mr-3" />
+                                <span className="w-full text-left bg-transparent border-none outline-none text-[11px] uppercase tracking-widest text-white/30 group-hover:text-white/50 transition-colors py-2.5 font-medium">
+                                    Buscar orígenes...
+                                </span>
                             </div>
-                        </div>
+                        </button>
 
                         {/* Cart uses identical wrapper pill structure for perfect symmetry */}
                         <div className="p-1 rounded-full bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_8px_20px_-4px_rgba(0,0,0,0.5)]">
@@ -115,6 +118,9 @@ export default function Navbar() {
 
             {/* Full Screen Menu Overlay */}
             <FullScreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+
+            {/* Global Search Overlay */}
+            <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
             {/* Cart Flyout Sidebar */}
             <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
