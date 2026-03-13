@@ -5,6 +5,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowUpRight, ShoppingBag, Star, Filter, X, Plus } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 /* ── DATA: The Artifacts ── */
 const PRODUCTS = [
@@ -77,6 +78,7 @@ export default function TiendaPage() {
     const [activeFilter, setActiveFilter] = useState("all");
     const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+    const { addItem } = useCart();
 
     // Track mouse for subtle parallax
     useEffect(() => {
@@ -198,7 +200,16 @@ export default function TiendaPage() {
                                         <span className="text-xs font-serif italic text-white/80">
                                             Añadir al Carrito
                                         </span>
-                                        <button className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gold-400 transition-colors">
+                                        <button 
+                                            onClick={() => addItem({
+                                                id: product.id,
+                                                name: product.name,
+                                                price: product.price,
+                                                image: product.image,
+                                                roast: product.roast
+                                            })}
+                                            className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gold-400 transition-colors"
+                                        >
                                             <Plus size={18} />
                                         </button>
                                     </div>
@@ -216,9 +227,9 @@ export default function TiendaPage() {
                                 {/* Title Group */}
                                 <div className="mb-6 relative">
                                     <h2
-                                        className="font-serif text-4xl md:text-5xl lg:text-6xl text-white group-hover:text-transparent group-hover:bg-clip-text transition-all duration-500"
+                                        className="font-serif text-4xl md:text-5xl lg:text-6xl text-transparent bg-clip-text transition-all duration-500"
                                         style={{
-                                            // Dynamic inline style for gradient text on hover
+                                            // Dynamic inline style for gradient text
                                             backgroundImage: `linear-gradient(to right, #fff, ${product.color})`
                                         }}
                                     >
@@ -264,16 +275,13 @@ export default function TiendaPage() {
                 </div>
 
                 {/* ── FOOTER MARKER ── */}
-                <div className="mt-48 flex flex-col items-center justify-center opacity-30">
+                <div className="mt-48 mb-24 flex flex-col items-center justify-center opacity-30">
                     <span className="font-serif italic text-2xl mb-4">Fin del Catálogo</span>
                     <div className="w-px h-24 bg-white" />
                 </div>
-
-                <div className="mt-20">
-                    <Footer />
-                </div>
-
             </main>
+
+            <Footer />
         </div>
     );
 }

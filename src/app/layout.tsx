@@ -94,6 +94,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { CartProvider } from "@/context/CartContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -102,9 +104,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${playfair.variable} ${inter.variable} antialiased`}>
-        <PasswordGate>
-          {children}
-        </PasswordGate>
+        <CartProvider>
+          <PasswordGate>
+            {children}
+          </PasswordGate>
+        </CartProvider>
       </body>
     </html>
   );
