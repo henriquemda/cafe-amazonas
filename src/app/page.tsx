@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Origins from "@/components/Origins";
+
 import Ritual from "@/components/Ritual";
 import Collection from "@/components/Collection";
 import Footer from "@/components/Footer";
@@ -17,14 +17,6 @@ export default function Home() {
       <Navbar />
 
       <Hero />
-
-      {/* 
-        The "Origins" section was recently enhanced by the user.
-        We place it here as the foundational narrative element.
-      */}
-      <div id="origins">
-        <Origins />
-      </div>
 
       <Ritual />
 

@@ -34,7 +34,7 @@ export default function Navbar() {
                         <div className="flex items-center gap-1 px-4 py-2 rounded-full border border-white/[0.02] bg-black/20">
                             <NavItem href="/tienda" label="Tienda" />
                             <Separator />
-                            <NavItem href="#origins" label="Origen" />
+                            <NavItem href="/origen" label="Origen" />
                             <Separator />
                             <NavItem href="/impacto" label="Impacto" />
                         </div>
