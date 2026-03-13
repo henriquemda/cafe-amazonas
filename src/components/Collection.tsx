@@ -9,37 +9,34 @@ import { ArrowRight, Sun } from "lucide-react";
    ──────────────────────────────────────── */
 const COFFEES = [
     {
-        id: 1,
-        name: "Amaruya Gold",
-        tagline: "El Icono",
-        roast: "Medio-Oscuro",
-        notes: ["Chocolate", "Caramelo", "Cítricos"],
-        description:
-            "Nuestra firma. Un equilibrio perfecto entre la intensidad de la selva y la dulzura de la tierra.",
-        image: "https://picsum.photos/seed/gold/400/600",
-        accent: "bg-gold-400",
+        id: "timbuyacu",
+        name: "Timbuyacu",
+        tagline: "El Cultivo Insignia",
+        description: "El perfil tradicional de nuestras fincas en Rodríguez de Mendoza. Equilibrio perfecto entre acidez cítrica y dulzura de panela.",
+        roast: "MEDIO-OSCURO",
+        notes: ["CHOCOLATE", "CARAMELO", "CÍTRICOS"],
+        image: "https://picsum.photos/seed/amaruya_gold/800/1200",
+        accent: "bg-[#D4AF37]" // Gold
     },
     {
-        id: 2,
-        name: "Midnight Jaguar",
-        tagline: "Espíritu Nocturno",
-        roast: "Oscuro Intenso",
-        notes: ["Cacao Puro", "Especifica", "Humo"],
-        description:
-            "Para los que buscan profundidad. Un cuerpo denso y salvaje como la noche amazónica.",
-        image: "https://picsum.photos/seed/jaguar/400/600",
-        accent: "bg-indigo-500",
+        id: "buenamoza",
+        name: "Buenamoza",
+        tagline: "Café de Mujer",
+        description: "Producido íntegramente por mujeres cafetaleras. Notas intensas a cacao puro y especias con cuerpo denso.",
+        roast: "OSCURO INTENSO",
+        notes: ["CACAO PURO", "ESPECIFICA", "HUMO"],
+        image: "https://picsum.photos/seed/midnight_jaguar/800/1200",
+        accent: "bg-[#8B5CF6]" // Purple/Night
     },
     {
-        id: 3,
-        name: "River Mist",
-        tagline: "Suavidad Matutina",
-        roast: "Claro",
-        notes: ["Jazmín", "Miel", "Té Verde"],
-        description:
-            "Delicado y floral. Inspirado en la niebla que cubre el Río Negro al amanecer.",
-        image: "https://picsum.photos/seed/river_nature/400/600",
-        accent: "bg-emerald-400",
+        id: "monteverde",
+        name: "Café Monteverde",
+        tagline: "La Línea Tradicional",
+        description: "Perfiles limpios, extremadamente dulces y con vibrante acidez mandarina representativa de la región.",
+        roast: "CLARO",
+        notes: ["JAZMÍN", "MIEL", "MANDARINA"],
+        image: "https://picsum.photos/seed/river_mist/800/1200",
+        accent: "bg-[#6EE7B7]" // Mist green
     },
 ];
 
