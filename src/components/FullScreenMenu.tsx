@@ -158,7 +158,7 @@ export default function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps)
 
                                         <div className="flex items-center gap-4 md:gap-6">
                                             {/* Label */}
-                                            <span className="font-serif text-[12vw] sm:text-[10vw] md:text-[8vh] lg:text-[10vh] text-white/50 group-hover:text-white transition-all duration-500 leading-[0.85] tracking-tight group-hover:translate-x-2 md:group-hover:translate-x-6">
+                                            <span className="font-serif text-4xl xs:text-5xl sm:text-6xl md:text-[8vh] lg:text-[10vh] text-white/50 group-hover:text-white transition-all duration-500 leading-[0.85] tracking-tight group-hover:translate-x-2 md:group-hover:translate-x-6 whitespace-nowrap overflow-hidden text-ellipsis">
                                                 {link.label}
                                             </span>
 

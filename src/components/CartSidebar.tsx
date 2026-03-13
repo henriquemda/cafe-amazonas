@@ -142,16 +142,16 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                     ) : (
                         <div className="px-6 py-4 flex flex-col gap-6">
                             {items.map((item) => (
-                                <div key={item.id} className="flex gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.05] group/item hover:border-white/10 transition-colors">
+                                <div key={item.id} className="flex gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/[0.05] group/item hover:border-white/10 transition-colors">
                                     {/* Image */}
-                                    <div className="relative w-20 h-24 rounded-lg overflow-hidden bg-black/40 border border-white/5">
+                                    <div className="relative w-16 sm:w-20 h-20 sm:h-24 shrink-0 rounded-lg overflow-hidden bg-black/40 border border-white/5">
                                         <Image src={item.image} alt={item.name} fill className="object-cover opacity-80 group-hover/item:opacity-100 transition-opacity" />
                                     </div>
 
                                     {/* Details */}
                                     <div className="flex-1 flex flex-col">
-                                        <div className="flex justify-between items-start mb-1">
-                                            <h4 className="font-serif text-lg text-white group-hover/item:text-[#C5A028] transition-colors">{item.name}</h4>
+                                        <div className="flex justify-between items-start mb-1 gap-2">
+                                            <h4 className="font-serif text-base sm:text-lg text-white group-hover/item:text-[#C5A028] transition-colors line-clamp-2">{item.name}</h4>
                                             <button onClick={() => removeItem(item.id)} className="text-white/30 hover:text-red-400 transition-colors p-1">
                                                 <Trash2 size={14} />
                                             </button>

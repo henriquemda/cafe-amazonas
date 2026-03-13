@@ -25,8 +25,8 @@ export default function Navbar() {
     return (
         <>
             <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 flex justify-between items-center ${scrolled
-                ? "px-6 py-4 md:px-12 bg-[#030603]/70 backdrop-blur-md border-b border-white/[0.05] shadow-2xl"
-                : "px-6 py-8 md:px-12 bg-transparent border-b border-transparent shadow-none"
+                ? "px-4 sm:px-6 py-3 sm:py-4 md:px-12 bg-[#030603]/70 backdrop-blur-md border-b border-white/[0.05] shadow-2xl"
+                : "px-4 sm:px-6 py-6 sm:py-8 md:px-12 bg-transparent border-b border-transparent shadow-none"
                 }`}>
                 {/* Left Actions — Search & Cart / Desktop Links */}
                 <div className="flex-1 flex items-center justify-start gap-2 md:gap-3 z-20">
@@ -42,7 +42,10 @@ export default function Navbar() {
                     
                     {/* The Utility Icons - Left on Mobile Only */}
                     <div className="flex gap-2 lg:hidden">
-                        <IconButton icon={Search} />
+                        {/* Hide search on mobile to prevent logo overlap */}
+                        <div className="hidden sm:block">
+                            <IconButton icon={Search} />
+                        </div>
                         <IconButton icon={ShoppingBag} badge={totalItems > 0} onClick={() => setIsCartOpen(true)} />
                     </div>
                 </div>
@@ -58,7 +61,7 @@ export default function Navbar() {
                             alt="Café Amazonas"
                             width={160}
                             height={64}
-                            className={`w-auto object-contain transition-all duration-500 drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] ${scrolled ? "h-10 md:h-12" : "h-14 md:h-16"
+                            className={`w-auto object-contain transition-all duration-500 drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] ${scrolled ? "h-8 md:h-12" : "h-10 md:h-16"
                                 }`}
                             priority
                         />
