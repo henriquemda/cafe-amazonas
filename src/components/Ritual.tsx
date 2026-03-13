@@ -54,23 +54,23 @@ export default function Ritual() {
                     {STEPS.map((step, i) => (
                         <div
                             key={step.number}
-                            className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${i % 2 === 1 ? "lg:flex-row-reverse" : ""
+                            className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 group ${i % 2 === 1 ? "lg:flex-row-reverse" : ""
                                 }`}
                         >
                             {/* IMAGE */}
-                            <div className="flex-1 w-full relative group perspective-1000">
-                                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm transition-transform duration-700 ease-out group-hover:scale-[1.02] group-hover:-rotate-1">
+                            <div className="flex-1 w-full relative perspective-1000 transform-gpu">
+                                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm transition-transform duration-700 ease-out group-hover:scale-[1.02] transform-gpu will-change-transform">
                                     <div className="absolute inset-0 bg-gold-400/10 mix-blend-color z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     <Image
                                         src={step.image}
                                         alt={step.title}
                                         fill
-                                        className="object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0"
+                                        className="object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 grayscale group-hover:grayscale-0 transform-gpu"
                                     />
 
                                     {/* Corner Decoration */}
-                                    <div className="absolute top-4 right-4 w-12 h-12 border-t border-r border-white/30 hidden group-hover:block transition-all" />
-                                    <div className="absolute bottom-4 left-4 w-12 h-12 border-b border-l border-white/30 hidden group-hover:block transition-all" />
+                                    <div className="absolute top-4 right-4 w-12 h-12 border-t border-r border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                    <div className="absolute bottom-4 left-4 w-12 h-12 border-b border-l border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                 </div>
 
                                 {/* Large Number */}
@@ -83,7 +83,7 @@ export default function Ritual() {
                             </div>
 
                             {/* CONTENT */}
-                            <div className="flex-1 w-full text-center lg:text-left">
+                            <div className="flex-1 w-full text-center lg:text-left transform-gpu">
                                 <div className="flex flex-col items-center lg:items-start">
                                     <div className="w-12 h-12 rounded-full border border-gold-400/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-400 group-hover:text-black transition-colors duration-500">
                                         <step.icon size={20} />

@@ -131,7 +131,7 @@ export default function Origins() {
         <section
             id="origins"
             ref={sectionRef}
-            className="relative w-full bg-[#060a06] text-white overflow-hidden"
+            className="relative w-full bg-[#060a06] text-white overflow-hidden transform-gpu"
         >
             {/* ═══════════════════════════════════════
          LAYER 0: ATMOSPHERIC BACKGROUND
@@ -140,14 +140,14 @@ export default function Origins() {
             <div className="absolute inset-0 pointer-events-none">
                 {/* Rotating gradient orbs */}
                 <div
-                    className="absolute w-[800px] h-[800px] -top-[200px] -left-[200px] rounded-full opacity-[0.04]"
+                    className="absolute w-[800px] h-[800px] -top-[200px] -left-[200px] rounded-full opacity-[0.04] transform-gpu"
                     style={{
                         background: "radial-gradient(circle, #D4AF37 0%, transparent 70%)",
                         animation: "slow-rotate 120s linear infinite",
                     }}
                 />
                 <div
-                    className="absolute w-[600px] h-[600px] -bottom-[150px] -right-[150px] rounded-full opacity-[0.03]"
+                    className="absolute w-[600px] h-[600px] -bottom-[150px] -right-[150px] rounded-full opacity-[0.03] transform-gpu"
                     style={{
                         background: "radial-gradient(circle, #6EE7B7 0%, transparent 70%)",
                         animation: "slow-rotate-reverse 150s linear infinite",
@@ -180,7 +180,7 @@ export default function Origins() {
          Cinematic intro
          ═══════════════════════════════════════ */}
             <div className="relative z-10 pt-24 md:pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-                <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+                <div className={`transition-all duration-1000 transform-gpu will-change-transform will-change-opacity ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
                     <div className="flex items-center gap-4 mb-6">
                         <div className="w-16 h-px bg-gold-400" />
                         <span className="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">
@@ -204,7 +204,7 @@ export default function Origins() {
          Interactive cartographic interface
          ═══════════════════════════════════════ */}
             <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto pb-16">
-                <div className={`flex flex-col lg:flex-row gap-0 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+                <div className={`flex flex-col lg:flex-row gap-0 transition-all duration-1000 delay-300 transform-gpu will-change-transform will-change-opacity ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
 
                     {/* ── LEFT: The Cartographic Map ── */}
                     <div className="w-full lg:w-[55%] relative">
@@ -485,7 +485,7 @@ export default function Origins() {
          Horizontal strip of milestones
          ═══════════════════════════════════════ */}
             <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto pt-8 pb-24 md:pb-32">
-                <div className={`transition-all duration-1000 delay-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+                <div className={`transition-all duration-1000 delay-700 transform-gpu will-change-transform will-change-opacity ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
 
                     {/* Timeline connector */}
                     <div className="relative">

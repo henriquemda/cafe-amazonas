@@ -9,74 +9,335 @@ import { useCart } from "@/context/CartContext";
 
 /* ── DATA: The Artifacts ── */
 const PRODUCTS = [
+    // ── TIMBUYACU: LÍNEA CLÁSICA ──
     {
-        id: 1,
-        name: "Amaruya Gold",
-        tagline: "El Icono",
-        price: 24,
-        roast: "Medio-Oscuro",
-        intensity: 8,
-        mood: "balance",
-        notes: ["Chocolate", "Caramelo", "Cítricos"],
-        image: "https://picsum.photos/seed/gold/800/1000",
-        description: "El equilibrio perfecto. Cosechado a 1,200m en la cuenca del Río Negro.",
+        id: "TC-250",
+        name: "Timbuyacu Clásico",
+        tagline: "Línea Clásica — 250g",
+        price: 18,
+        roast: "Medio",
+        intensity: 6,
+        mood: "timbuyacu",
+        notes: ["Panela", "Naranja", "Cacao"],
+        image: "https://picsum.photos/seed/timb-classic/800/1000",
+        description: "El perfil tradicional de la Finca Timbuyacu. Notas dulces y acidez cítrica brillante.",
         color: "#D4AF37", // Gold
-        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)"
+        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
+        isHero: false
     },
     {
-        id: 2,
-        name: "Midnight Jaguar",
-        tagline: "Espíritu Nocturno",
-        price: 26,
-        roast: "Oscuro Intenso",
-        intensity: 10,
-        mood: "intense",
-        notes: ["Cacao Puro", "Especias", "Humo"],
-        image: "https://picsum.photos/seed/jaguar/800/1000",
-        description: "Para rituales profundos. Un cuerpo denso y salvaje.",
-        color: "#6366f1", // Indigo
-        gradient: "radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15), transparent 70%)"
+        id: "TC-500",
+        name: "Timbuyacu Clásico",
+        tagline: "Línea Clásica — 500g",
+        price: 32,
+        roast: "Medio",
+        intensity: 6,
+        mood: "timbuyacu",
+        notes: ["Panela", "Naranja", "Cacao"],
+        image: "https://picsum.photos/seed/timb-classic/800/1000",
+        description: "El perfil tradicional de la Finca Timbuyacu. Formato medio kilo.",
+        color: "#D4AF37", // Gold
+        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
+        isHero: false
     },
+
+    // ── TIMBUYACU: EDICIÓN LIMITADA ──
     {
-        id: 3,
-        name: "River Mist",
-        tagline: "Suavidad Matutina",
+        id: "TL-MARAGO",
+        name: "Timbuyacu Maragogype",
+        tagline: "Lavado — Edición Limitada 250g",
         price: 28,
         roast: "Claro",
-        intensity: 5,
-        mood: "soft",
-        notes: ["Jazmín", "Miel", "Té Verde"],
-        image: "https://picsum.photos/seed/river_nature/800/1000",
-        description: "Floral y delicado. Como la niebla al amanecer.",
-        color: "#34d399", // Emerald
-        gradient: "radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.15), transparent 70%)"
+        intensity: 7,
+        mood: "limitada",
+        notes: ["Miel", "Floral", "Frutos Rojos"],
+        image: "https://picsum.photos/seed/timb-mara/800/1000",
+        description: "Granos 'Elefante' de tamaño excepcional. Cosecha selectiva de Maragogype.",
+        color: "#F87171", // Soft Red
+        gradient: "radial-gradient(circle at 50% 50%, rgba(248, 113, 113, 0.15), transparent 70%)",
+        isHero: false
     },
     {
-        id: 4,
-        name: "Amazon Trilogy",
-        tagline: "Colección Completa",
-        price: 70,
-        roast: "Mix",
+        id: "TL-BOURBON",
+        name: "Timbuyacu Bourbon",
+        tagline: "Lavado — Edición Limitada 250g",
+        price: 26,
+        roast: "Medio-Claro",
+        intensity: 5,
+        mood: "limitada",
+        notes: ["Caramelo", "Manzana", "Nuez"],
+        image: "https://picsum.photos/seed/timb-bourb/800/1000",
+        description: "Varietal clásico Bourbon. Taza limpia, dulce y con acidez málica.",
+        color: "#FBBF24", // Amber
+        gradient: "radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "TL-GEISHA",
+        name: "Timbuyacu Geisha",
+        tagline: "Lavado — Edición Limitada 250g",
+        price: 55,
+        roast: "Claro",
+        intensity: 8,
+        mood: "limitada",
+        notes: ["Jazmín", "Bergamota", "Té de Papaya"],
+        image: "https://picsum.photos/seed/timb-geisha/800/1000",
+        description: "El rey de los varietales. Perfil aromático hiper-complejo y floral.",
+        color: "#A78BFA", // Violet/Purple
+        gradient: "radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.15), transparent 70%)",
+        isHero: true // Hero Layout
+    },
+
+    // ── TIMBUYACU: FILTER ──
+    {
+        id: "TF-15",
+        name: "Timbuyacu Filter",
+        tagline: "Drip Bag — 15g Unit",
+        price: 4,
+        roast: "Medio",
+        intensity: 6,
+        mood: "filter",
+        notes: ["Práctico", "Dulce", "Equilibrado"],
+        image: "https://picsum.photos/seed/timb-filter/800/1000",
+        description: "Café de especialidad en formato drip-bag para preparar en cualquier lugar.",
+        color: "#9CA3AF", // Gray
+        gradient: "radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "TF-SET-5",
+        name: "Set 5 Filters",
+        tagline: "Timbuyacu Drip Bags",
+        price: 18,
+        roast: "Medio",
+        intensity: 6,
+        mood: "filter",
+        notes: ["Pack Semanal", "Oficina", "Viaje"],
+        image: "https://picsum.photos/seed/timb-filter-5/800/1000",
+        description: "Caja de 5 unidades. Tu dosis semanal de Amazonas lista para el filtro.",
+        color: "#9CA3AF",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "TF-SET-MUG",
+        name: "Filters + Taza",
+        tagline: "Timbuyacu Collection",
+        price: 35,
+        roast: "Medio",
+        intensity: 6,
+        mood: "filter",
+        notes: ["Pack Regalo", "Cerámica", "Premium"],
+        image: "https://picsum.photos/seed/timb-filter-mug/800/1000",
+        description: "Incluye filtros Timbuyacu y una taza de cerámica artesanal.",
+        color: "#D4AF37",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
+        isHero: false
+    },
+
+    // ── TIMBUYACU: EXPERIENCIAS & REGALOS ──
+    {
+        id: "TE-COFRE",
+        name: "Cofre de la Finca Timbuyacu",
+        tagline: "3 Microlotes Exclusivos",
+        price: 85,
+        roast: "Curaduría",
+        intensity: 9,
+        mood: "experiencia",
+        notes: ["Mirador", "Jergón", "Shapingo"],
+        image: "https://picsum.photos/seed/timb-cofre/1600/900",
+        description: "Una caja premium de degustación con tres microlotes excepcionales cosechados en parcelas específicas de Rodríguez de Mendoza.",
+        color: "#EAB308", // Yellow/Gold
+        gradient: "radial-gradient(circle at 50% 50%, rgba(234, 179, 8, 0.2), transparent 70%)",
+        isHero: true // Hero Layout
+    },
+    {
+        id: "TE-AMAZONICO",
+        name: "Set Amazónico",
+        tagline: "Timbuyacu + Buenamoza",
+        price: 45,
+        roast: "Doble Origen",
         intensity: 7,
-        mood: "all",
-        notes: ["Degustación", "Regalo", "Premium"],
-        image: "https://picsum.photos/seed/bundle/800/1000",
-        description: "La experiencia completa de la selva. Tres perfiles, un origen.",
-        color: "#ffffff", // White
-        gradient: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 70%)"
+        mood: "experiencia",
+        notes: ["Colaboración", "Contrastes", "Selva"],
+        image: "https://picsum.photos/seed/timb-amazon/800/1000",
+        description: "La unión de dos fincas legendarias en un solo viaje sensorial amazonense.",
+        color: "#10B981", // Emerald
+        gradient: "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "TE-NAVIDAD",
+        name: "Set Navideño Timbuyacu",
+        tagline: "Edición Festiva",
+        price: 50,
+        roast: "Especial",
+        intensity: 8,
+        mood: "experiencia",
+        notes: ["Especias", "Cacao", "Cálido"],
+        image: "https://picsum.photos/seed/timb-xmas/800/1000",
+        description: "Un perfil de tueste diseñado para acompañar los dulces de temporada.",
+        color: "#EF4444", // Red
+        gradient: "radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "TE-FILTERS-MUG-SPL",
+        name: "Set Filters + Taza Clásica",
+        tagline: "Edición Especial",
+        price: 38,
+        roast: "Medio",
+        intensity: 6,
+        mood: "experiencia",
+        notes: ["Edición Limitada", "Cerámica", "Regalo"],
+        image: "https://picsum.photos/seed/timb-mug-spl/800/1000",
+        description: "Caja de regalo premium con filtros y la taza oficial de Finca Timbuyacu.",
+        color: "#D4AF37",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
+        isHero: false
+    },
+
+    // ── BUENAMOZA (CAFÉ MUJER) ──
+    {
+        id: "BM-250",
+        name: "Buenamoza",
+        tagline: "Café de Mujer — 250g",
+        price: 20,
+        roast: "Medio-Oscuro",
+        intensity: 8,
+        mood: "buenamoza",
+        notes: ["Nueces Tostadas", "Chocolate Oscuro", "Cuerpo Denso"],
+        image: "https://picsum.photos/seed/bm-250/800/1000",
+        description: "Producido por María Dorila Vargas Grandez. Un café con carácter, intensidad y profunda dulzura.",
+        color: "#EC4899", // Pink/Rose
+        gradient: "radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "BM-500",
+        name: "Buenamoza",
+        tagline: "Café de Mujer — 500g",
+        price: 36,
+        roast: "Medio-Oscuro",
+        intensity: 8,
+        mood: "buenamoza",
+        notes: ["Nueces Tostadas", "Chocolate Oscuro", "Cuerpo Denso"],
+        image: "https://picsum.photos/seed/bm-500/800/1000",
+        description: "Producido por María Dorila Vargas Grandez. Formato de 500 gramos.",
+        color: "#EC4899",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "BM-1KG",
+        name: "Buenamoza",
+        tagline: "Café de Mujer — 1kg",
+        price: 65,
+        roast: "Medio-Oscuro",
+        intensity: 8,
+        mood: "buenamoza",
+        notes: ["Nueces Tostadas", "Chocolate Oscuro", "Cuerpo Denso"],
+        image: "https://picsum.photos/seed/bm-1kg/800/1000",
+        description: "Producido por María Dorila. Un kilo del perfil más intenso y achocolatado de Amazonas.",
+        color: "#EC4899",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15), transparent 70%)",
+        isHero: true // Hero Layout
+    },
+
+    // ── CAFÉ MONTEVERDE ──
+    {
+        id: "MV-250",
+        name: "Monteverde Clásico",
+        tagline: "Línea Clásica — 250g",
+        price: 17,
+        roast: "Medio",
+        intensity: 5,
+        mood: "monteverde",
+        notes: ["Hierba Dulce", "Cítrico", "Mandarina"],
+        image: "https://picsum.photos/seed/mv-250/800/1000",
+        description: "La línea fundacional. Café lavado tradicional amazónico con acidez brillante.",
+        color: "#22C55E", // Green
+        gradient: "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "MV-500",
+        name: "Monteverde Clásico",
+        tagline: "Línea Clásica — 500g",
+        price: 30,
+        roast: "Medio",
+        intensity: 5,
+        mood: "monteverde",
+        notes: ["Hierba Dulce", "Cítrico", "Mandarina"],
+        image: "https://picsum.photos/seed/mv-500/800/1000",
+        description: "La línea fundacional Monteverde. Formato de medio kilo.",
+        color: "#22C55E",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "MV-1KG",
+        name: "Monteverde Clásico",
+        tagline: "Línea Clásica — 1kg",
+        price: 55,
+        roast: "Medio",
+        intensity: 5,
+        mood: "monteverde",
+        notes: ["Hierba Dulce", "Cítrico", "Mandarina"],
+        image: "https://picsum.photos/seed/mv-1kg/800/1000",
+        description: "Reserva mensual. Un kilo de la clásica acidez mandarina de Monteverde.",
+        color: "#22C55E",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.15), transparent 70%)",
+        isHero: true // Hero Layout
+    },
+
+    // ── MERCH & ACCESORIOS ──
+    {
+        id: "MC-TAZA",
+        name: "Taza de Cerámica",
+        tagline: "Timbuyacu Oficial",
+        price: 25,
+        roast: "Accesorio",
+        intensity: 0,
+        mood: "merch",
+        notes: ["Artesanal", "Cerámica", "250ml"],
+        image: "https://picsum.photos/seed/mc-taza/800/1000",
+        description: "Taza artesanal grabada con el emblema de la finca Timbuyacu. Perfecta retención térmica.",
+        color: "#F3F4F6", // Light Gray
+        gradient: "radial-gradient(circle at 50% 50%, rgba(243, 244, 246, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "MC-TOTE",
+        name: "Totebag Timbuyacu",
+        tagline: "100% Algodón",
+        price: 15,
+        roast: "Accesorio",
+        intensity: 0,
+        mood: "merch",
+        notes: ["Ecológico", "Resistente", "Lienzo"],
+        image: "https://picsum.photos/seed/mc-tote/800/1000",
+        description: "Bolsa de lienzo reforzado. Lleva el Amazonas a todas partes.",
+        color: "#FDE68A", // Cream/Canvas
+        gradient: "radial-gradient(circle at 50% 50%, rgba(253, 230, 138, 0.15), transparent 70%)",
+        isHero: false
     },
 ];
 
 const FILTERS = [
-    { id: "all", label: "Todo" },
-    { id: "intense", label: "Intenso" },
-    { id: "balance", label: "Equilibrado" },
-    { id: "soft", label: "Suave" },
+    { id: "all", label: "Colección Completa" },
+    { id: "timbuyacu", label: "Timbuyacu Clásico" },
+    { id: "limitada", label: "Timbuyacu Limitada" },
+    { id: "filter", label: "Drip / Filters" },
+    { id: "experiencia", label: "Experiencias" },
+    { id: "buenamoza", label: "Café Mujer (Buenamoza)" },
+    { id: "monteverde", label: "Café Monteverde" },
+    { id: "merch", label: "Accesorios" },
 ];
 
 export default function TiendaPage() {
     const [activeFilter, setActiveFilter] = useState("all");
-    const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+    const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
     const { addItem } = useCart();
 
@@ -142,7 +403,7 @@ export default function TiendaPage() {
                     <div className="md:col-span-4 flex flex-col justify-end items-end animate-fade-in-up animate-delay-2">
                         <div className="text-right border-l border-white/20 pl-6 mb-8">
                             <p className="text-white/60 text-sm leading-relaxed max-w-[200px]">
-                                Seleccionados a mano. Tostados con precisión. Enviados desde el origen.
+                                Catálogo íntegro desde Rodríguez de Mendoza, Amazonas. Cultivado por familias, curado con maestría.
                             </p>
                         </div>
 
@@ -164,70 +425,57 @@ export default function TiendaPage() {
                     </div>
                 </header>
 
-                {/* ── GRID: Asymmetric Layout ── */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-32">
-                    {filteredProducts.map((product, index) => (
+                {/* ── GRID: Compact E-Commerce Layout ── */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-24">
+                    {filteredProducts.map((product) => (
                         <div
                             key={product.id}
                             className={`group relative perspective-1000 ${
-                                // Asymmetric Logic:
-                                // Full width rows for immersive items, or split columns
-                                index % 3 === 0 ? "lg:col-span-12 flex flex-col lg:flex-row gap-12 items-center" :
-                                    "lg:col-span-6 flex flex-col"
+                                // Compact Grid Logic
+                                product.isHero ? "sm:col-span-2 lg:col-span-3 xl:col-span-4 flex flex-col lg:flex-row gap-12 items-center border-t border-b border-white/[0.04] py-12" :
+                                    "col-span-1 flex flex-col"
                                 }`}
-                            onMouseEnter={() => setHoveredProduct(product.id)}
+                            onMouseEnter={() => setHoveredProduct(product.id as any)}
                             onMouseLeave={() => setHoveredProduct(null)}
                         >
-                            {/* ── VISUAL CONTAINER ── */}
-                            <div className={`relative w-full ${index % 3 === 0 ? "lg:w-[60%] aspect-[16/9] lg:order-2" : "aspect-[4/5]"
-                                }`}>
-                                <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-sm border border-white/10 overflow-hidden transition-all duration-700 group-hover:border-white/20">
-                                    {/* Image with Parallax Hover */}
-                                    <div className="relative w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105">
+                            {/* ── VISUAL CONTAINER (Compact E-commerce) ── */}
+                            <div className={`relative w-full ${product.isHero ? "lg:w-[50%] aspect-[16/9] lg:order-2" : "aspect-[4/5]"
+                                } flex items-center justify-center`}>
+                                
+                                {/* Organic Atmosphere Glow specific to product color */}
+                                <div 
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-1000 blur-[80px] rounded-full"
+                                    style={{ background: `radial-gradient(circle, ${product.color}, transparent 70%)` }}
+                                />
+
+                                {/* Floating Product Assembly */}
+                                <div className="relative w-[80%] h-[85%] transition-all duration-1000 ease-out group-hover:scale-[1.05] group-hover:-translate-y-6 perspective-1000">
+                                    <div className="relative w-full h-full drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)]">
                                         <Image
                                             src={product.image}
                                             alt={product.name}
                                             fill
-                                            className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 grayscale-[0.2] group-hover:grayscale-0"
+                                            className="object-contain filter grayscale-[0.3] opacity-90 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100"
                                         />
-
-                                        {/* Overlay Gradient */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
                                     </div>
-
-                                    {/* Instant Action Overlay */}
-                                    <div className="absolute bottom-0 left-0 w-full p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out flex items-center justify-between bg-black/40 backdrop-blur-xl border-t border-white/10">
-                                        <span className="text-xs font-serif italic text-white/80">
-                                            Añadir al Carrito
-                                        </span>
-                                        <button 
-                                            onClick={() => addItem({
-                                                id: product.id,
-                                                name: product.name,
-                                                price: product.price,
-                                                image: product.image,
-                                                roast: product.roast
-                                            })}
-                                            className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gold-400 transition-colors"
-                                        >
-                                            <Plus size={18} />
-                                        </button>
-                                    </div>
+                                    
+                                    {/* Physical Ground Contact Shadow */}
+                                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[70%] h-8 bg-black/60 blur-2xl rounded-[100%] scale-75 group-hover:scale-100 transition-transform duration-1000" />
                                 </div>
                             </div>
 
                             {/* ── INFORMATION CONTAINER ── */}
-                            <div className={`flex flex-col ${index % 3 === 0 ? "lg:w-[40%] lg:order-1 lg:items-end lg:text-right" : "mt-8"
+                            <div className={`flex flex-col ${product.isHero ? "lg:w-[50%] lg:order-1 lg:items-end lg:text-right" : "mt-6"
                                 }`}>
                                 {/* ID Number */}
-                                <span className="font-mono text-xs text-white/20 mb-4 block">
-                                    0{product.id} — {product.mood}
+                                <span className="font-mono text-[10px] text-white/20 mb-3 block">
+                                    {product.id}
                                 </span>
 
                                 {/* Title Group */}
-                                <div className="mb-6 relative">
+                                <div className="mb-4 relative">
                                     <h2
-                                        className="font-serif text-4xl md:text-5xl lg:text-6xl text-transparent bg-clip-text transition-all duration-500"
+                                        className={`font-serif text-transparent bg-clip-text transition-all duration-500 ${product.isHero ? "text-4xl lg:text-5xl" : "text-2xl lg:text-3xl"}`}
                                         style={{
                                             // Dynamic inline style for gradient text
                                             backgroundImage: `linear-gradient(to right, #fff, ${product.color})`
@@ -235,13 +483,13 @@ export default function TiendaPage() {
                                     >
                                         {product.name}
                                     </h2>
-                                    <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 mt-2">
+                                    <p className="text-[9px] uppercase tracking-[0.2em] text-white/50 mt-2">
                                         {product.tagline}
                                     </p>
                                 </div>
 
                                 {/* Flavor Tags */}
-                                <div className={`flex flex-wrap gap-2 mb-8 ${index % 3 === 0 ? "justify-end" : "justify-start"}`}>
+                                <div className={`flex flex-wrap gap-2 mb-8 ${product.isHero ? "justify-end" : "justify-start"}`}>
                                     {product.notes.map((note) => (
                                         <span
                                             key={note}
@@ -254,19 +502,31 @@ export default function TiendaPage() {
                                 </div>
 
                                 {/* Description */}
-                                <p className={`text-sm text-gray-400 leading-relaxed max-w-sm mb-8 ${index % 3 === 0 ? "text-right" : ""}`}>
+                                <p className={`text-xs text-gray-400 leading-relaxed mb-6 ${product.isHero ? "text-right max-w-sm" : ""}`}>
                                     {product.description}
                                 </p>
 
-                                {/* Price & Main Action */}
-                                <div className={`flex items-center gap-6 ${index % 3 === 0 ? "flex-row-reverse" : ""}`}>
-                                    <span className="font-serif text-3xl text-white">
+                                {/* Price & Neuromarketing Primary CTA */}
+                                <div className={`flex items-center gap-4 ${product.isHero ? "flex-row-reverse" : ""}`}>
+                                    <span className={`font-serif text-white ${product.isHero ? "text-3xl" : "text-2xl"}`}>
                                         ${product.price}
                                     </span>
-                                    <div className="h-px w-12 bg-white/20" />
-                                    <button className="group/btn flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-white hover:text-gold-400 transition-colors">
-                                        Ver Detalles
-                                        <ArrowUpRight size={14} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                                    <div className="h-px w-4 bg-white/20" />
+                                    <button 
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            addItem({
+                                                id: String(product.id),
+                                                name: product.name,
+                                                price: product.price,
+                                                image: product.image,
+                                                roast: product.roast
+                                            });
+                                        }}
+                                        className="group/btn flex items-center gap-2 px-4 py-2 bg-white text-black text-[9px] uppercase tracking-[0.15em] font-bold hover:bg-gold-400 transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+                                    >
+                                        Añadir
+                                        <Plus size={12} className="group-hover/btn:rotate-90 transition-transform duration-500" />
                                     </button>
                                 </div>
                             </div>

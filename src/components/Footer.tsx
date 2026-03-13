@@ -2,10 +2,64 @@
 
 import Link from "next/link";
 import { ArrowUpRight, Facebook, Instagram, Twitter } from "lucide-react";
+import { useState, useRef } from "react";
 
 export default function Footer() {
+    const footerRef = useRef<HTMLElement>(null);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+        if (!footerRef.current) return;
+        const rect = footerRef.current.getBoundingClientRect();
+        setMousePosition({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+        });
+    };
+
     return (
-        <footer className="relative bg-zinc-950 text-white border-t border-white/5 pt-20 pb-10 overflow-hidden">
+        <footer 
+            ref={footerRef}
+            onMouseMove={handleMouseMove}
+            className="relative bg-[#030503] text-white border-t border-white/5 pt-20 pb-10 overflow-hidden transform-gpu"
+        >
+            {/* ═══ KINETIC AURORA BACKGROUND ═══ */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                {/* SVG Cinematic Noise Overlay */}
+                <div 
+                    className="absolute inset-0 opacity-[0.04] mix-blend-screen z-10" 
+                    style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
+                />
+                
+                {/* Slow moving ambient atmospheric orbs */}
+                <div 
+                    className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] blur-[120px] rounded-[100%] pointer-events-none opacity-30 transform-gpu mix-blend-screen"
+                    style={{
+                        background: "radial-gradient(circle, #D4AF37 0%, transparent 60%)",
+                        animation: "slow-rotate 140s linear infinite",
+                    }}
+                />
+                <div 
+                    className="absolute bottom-[-30%] right-[-10%] w-[70%] h-[70%] blur-[140px] rounded-[100%] pointer-events-none opacity-40 transform-gpu mix-blend-screen"
+                    style={{
+                         background: "radial-gradient(circle, #064E3B 0%, transparent 60%)",
+                         animation: "slow-rotate-reverse 180s linear infinite",
+                    }}
+                />
+                
+                {/* Immediate Interactive Spot / Flashlight */}
+                <div 
+                    className="absolute w-[600px] h-[600px] blur-[100px] rounded-full pointer-events-none transform-gpu mix-blend-screen transition-opacity duration-1000"
+                    style={{
+                        background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
+                        left: `${mousePosition.x}px`,
+                        top: `${mousePosition.y}px`,
+                        transform: 'translate(-50%, -50%)',
+                        opacity: mousePosition.x !== 0 ? 1 : 0
+                    }}
+                />
+            </div>
+
             <div className="container mx-auto px-6 md:px-12 relative z-10">
 
                 {/* ═══ TOP SECTION: Grid ═══ */}
@@ -93,15 +147,17 @@ export default function Footer() {
                 </div>
 
                 {/* ═══ GIANT FOOTER BRANDING ═══ */}
-                <div className="mt-20 md:mt-32 w-full overflow-hidden select-none pointer-events-none opacity-10 mix-blend-overlay">
-                    <span className="block text-[18vw] leading-[0.75] font-serif text-center tracking-tighter text-white">
+                <div className="mt-16 w-full select-none pointer-events-none relative z-10 flex flex-col items-center justify-center pt-8">
+                    <span 
+                        className="inline-block text-[18vw] leading-none font-serif tracking-tighter bg-clip-text text-transparent opacity-10"
+                        style={{
+                            backgroundImage: "linear-gradient(180deg, #FFFFFF 0%, #D4AF37 100%)",
+                        }}
+                    >
                         AMARUYA
                     </span>
                 </div>
             </div>
-
-            {/* Background Gradient */}
-            <div className="absolute bottom-0 left-0 w-full h-[50vh] bg-gradient-to-t from-gold-900/10 to-transparent pointer-events-none" />
         </footer>
     );
 }
