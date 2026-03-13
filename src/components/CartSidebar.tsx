@@ -52,7 +52,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
 
         const baseUrl = "https://wa.me/51953247124";
         
-        let message = "☕ *¡Hola Amaruya Café!* 🌿\n";
+        let message = "\u2615 *¡Hola Amaruya Café!* \uD83C\uDF3F\n";
         message += "Me gustaría realizar el siguiente pedido:\n\n";
 
         items.forEach((item, index) => {
@@ -63,7 +63,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         });
 
         message += `*Total a pagar: S/${subtotal.toFixed(2)}*\n\n`;
-        message += "¡Quedo a la espera de sus indicaciones para coordinar el pago y envío! ✨";
+        message += "¡Quedo a la espera de sus indicaciones para coordinar el pago y envío! \u2728";
 
         const encodedMessage = encodeURIComponent(message);
         window.open(`${baseUrl}?text=${encodedMessage}`, "_blank");
