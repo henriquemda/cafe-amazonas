@@ -36,7 +36,7 @@ export default function Navbar() {
                             <Separator />
                             <NavItem href="#origins" label="Origen" />
                             <Separator />
-                            <NavItem href="#" label="Impacto" />
+                            <NavItem href="/impacto" label="Impacto" />
                         </div>
                     </div>
                     
