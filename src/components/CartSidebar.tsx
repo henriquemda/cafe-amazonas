@@ -46,6 +46,29 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         if (e.target === e.currentTarget) onClose();
     };
 
+    // Construct highly-formatted WhatsApp Message
+    const handleCheckout = () => {
+        if (items.length === 0) return;
+
+        const baseUrl = "https://wa.me/51953247124";
+        
+        let message = "☕ *¡Hola Amaruya Café!* 🌿\n";
+        message += "Me gustaría realizar el siguiente pedido:\n\n";
+
+        items.forEach((item, index) => {
+            message += `*${index + 1}. ${item.name}*\n`;
+            if (item.roast) message += `   ├ Opciones: ${item.roast}\n`;
+            message += `   ├ Cantidad: ${item.quantity}\n`;
+            message += `   └ Subtotal: $${(item.price * item.quantity).toFixed(2)}\n\n`;
+        });
+
+        message += `*Total a pagar: $${subtotal.toFixed(2)}*\n\n`;
+        message += "¡Quedo a la espera de sus indicaciones para coordinar el pago y envío! ✨";
+
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`${baseUrl}?text=${encodedMessage}`, "_blank");
+    };
+
     return (
         <div
             className={`fixed inset-0 z-[120] transition-all duration-700 ${isOpen ? "pointer-events-auto" : "pointer-events-none"
@@ -171,6 +194,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                         </span>
                     </div>
                     <button 
+                        onClick={handleCheckout}
                         disabled={items.length === 0}
                         className="w-full flex items-center justify-center gap-3 py-4 rounded-xl bg-[#C5A028] border border-[#C5A028] text-black disabled:bg-white/5 disabled:border-white/10 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-white hover:border-white transition-all duration-300 uppercase tracking-widest text-[11px] font-bold"
                     >
