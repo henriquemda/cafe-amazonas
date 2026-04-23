@@ -168,7 +168,7 @@ export default function PasswordGate({
                         Protocolo de Acceso
                     </h2>
                     <h1 className="font-serif text-[2.5rem] md:text-[4rem] lg:text-[5rem] text-white/95 tracking-[0.3em] md:tracking-[0.4em] uppercase mix-blend-plus-lighter text-center font-light leading-none">
-                        El Café
+                        El Café Premium
                     </h1>
                 </div>
 
