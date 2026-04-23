@@ -165,7 +165,7 @@ export default function PasswordGate({
                         priority
                     />
                     <h2 className="font-sans text-[8px] md:text-[10px] lg:text-[12px] text-[var(--color-gold-500)] tracking-[0.8em] md:tracking-[1em] uppercase mb-4 md:mb-6 opacity-80">
-                        Protocolo de Acceso
+                        Protocolo de Acceso César
                     </h2>
                     <h1 className="font-serif text-[2.5rem] md:text-[4rem] lg:text-[5rem] text-white/95 tracking-[0.3em] md:tracking-[0.4em] uppercase mix-blend-plus-lighter text-center font-light leading-none">
                         El Café Premium

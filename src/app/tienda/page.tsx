@@ -114,22 +114,22 @@ export default function TiendaPage() {
                 <div className="flex flex-col gap-40">
                     {[
                         {
-                            id: "timbuyacu",
-                            title: "Finca Timbuyacu",
-                            description: "El cultivo insignia de la familia. Desde la línea clásica hasta microlotes de edición limitada y experiencias amazónicas.",
-                            brands: ["timbuyacu", "limitada", "filter", "experiencia", "merch"]
+                            id: "monteverde",
+                            title: "CAFÉ MONTEVERDE",
+                            description: "Cafés de los productores del comité de cafés especiales del valle de Guayabamba , es una mezcla de los cafés que llegan en una taza a un puntaje mayor a 84 puntos. Cafés sostenibles y complejos.",
+                            brands: ["monteverde"]
                         },
                         {
                             id: "buenamoza",
-                            title: "Buenamoza (Café Mujer)",
-                            description: "Producido íntegramente por María Dorila Vargas Grandez y mujeres cafetaleras de Rodríguez de Mendoza. Un homenaje al empoderamiento agrícola.",
+                            title: "BUENAMOZA",
+                            description: "Café de origen, pertenece a nuestras productoras del comité de cafés especiales de café Monteverde. Dando valor al trabajo de la mujer cafetalera, tenemos una edición por cada productora. Cafés finos procesados por ellas mismas en sus fincas.",
                             brands: ["buenamoza"]
                         },
                         {
-                            id: "monteverde",
-                            title: "Café Monteverde",
-                            description: "La línea tradicional de Amazonas. Perfiles limpios, dulces y con vibrante acidez mandarina.",
-                            brands: ["monteverde"]
+                            id: "timbuyacu",
+                            title: "TIMBUYACU",
+                            description: "Café de origen de la finca Timbuyacu, finca de especialidad, procesos, lavados, naturales y honey. Tienen un puntaje en taza de 85 a más. Se caracterizan por ser cafés frutales, florales y con buen cuerpo.",
+                            brands: ["timbuyacu", "limitada", "filter", "experiencia", "merch"]
                         }
                     ].map((brandGroup) => {
                         // Get products belonging to this specific brand group
@@ -239,27 +239,41 @@ export default function TiendaPage() {
                                 </p>
 
                                 {/* Price & Neuromarketing Primary CTA */}
-                                <div className={`flex items-center gap-4 ${product.isHero ? "flex-row-reverse" : ""}`}>
-                                    <span className={`font-serif text-white ${product.isHero ? "text-3xl" : "text-2xl"}`}>
-                                        S/{product.price}
-                                    </span>
-                                    <div className="h-px w-4 bg-white/20" />
-                                    <button 
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            addItem({
-                                                id: String(product.id),
-                                                name: product.name,
-                                                price: product.price,
-                                                image: product.image,
-                                                roast: product.roast
-                                            });
-                                        }}
-                                        className="group/btn flex items-center gap-2 px-4 py-2 bg-white text-black text-[9px] uppercase tracking-[0.15em] font-bold hover:bg-gold-400 transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
-                                    >
-                                        Añadir
-                                        <Plus size={12} className="group-hover/btn:rotate-90 transition-transform duration-500" />
-                                    </button>
+                                <div className={`flex flex-col gap-4 mt-auto ${product.isHero ? "items-end" : "items-start"}`}>
+                                    <div className={`flex flex-col gap-1 ${product.isHero ? "items-end" : "items-start"}`}>
+                                        <div className="flex items-center gap-2">
+                                            <span className={`font-serif text-white ${product.isHero ? "text-3xl" : "text-2xl"}`}>
+                                                S/{product.price}
+                                            </span>
+                                            <span className="text-[9px] uppercase tracking-widest text-white/40">P. Menor</span>
+                                        </div>
+                                        {product.priceMayor && (
+                                            <div className="flex items-center gap-2">
+                                                <span className={`font-serif text-gold-400 ${product.isHero ? "text-xl" : "text-lg"}`}>
+                                                    S/{product.priceMayor}
+                                                </span>
+                                                <span className="text-[9px] uppercase tracking-widest text-gold-400/60">P. Mayor</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <button 
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                addItem({
+                                                    id: String(product.id),
+                                                    name: product.name,
+                                                    price: product.price,
+                                                    image: product.image,
+                                                    roast: product.roast
+                                                });
+                                            }}
+                                            className="group/btn flex items-center gap-2 px-6 py-2 border border-white/20 hover:border-gold-400 bg-transparent hover:bg-gold-400 text-white hover:text-black text-[9px] uppercase tracking-[0.15em] font-bold transition-all duration-500"
+                                        >
+                                            Añadir Al Carrito
+                                            <Plus size={12} className="group-hover/btn:rotate-90 transition-transform duration-500" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

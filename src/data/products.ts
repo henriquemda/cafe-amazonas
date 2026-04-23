@@ -3,6 +3,7 @@ export interface Product {
     name: string;
     tagline: string;
     price: number;
+    priceMayor?: number;
     roast: string;
     intensity: number;
     mood: string;
@@ -15,7 +16,152 @@ export interface Product {
 }
 
 export const PRODUCTS: Product[] = [
-    // ── TIMBUYACU: LÍNEA CLÁSICA ──
+    // ── CAFÉ MONTEVERDE (CLÁSICO) ──
+    {
+        id: "MV-250",
+        name: "Monteverde 250g",
+        tagline: "Línea Tradicional",
+        price: 20,
+        priceMayor: 18,
+        roast: "Medio",
+        intensity: 5,
+        mood: "monteverde",
+        notes: ["Mandarina", "Miel", "Floral"],
+        image: "/images/default-pack.jpg",
+        description: "El café que inició todo. Una mezcla curada de cafés sostenibles con puntaje mayor a 84 puntos.",
+        color: "#10B981", // Green
+        gradient: "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "MV-500",
+        name: "Monteverde 500g",
+        tagline: "Línea Tradicional",
+        price: 40,
+        priceMayor: 36,
+        roast: "Medio",
+        intensity: 5,
+        mood: "monteverde",
+        notes: ["Mandarina", "Miel", "Floral"],
+        image: "/images/default-pack.jpg",
+        description: "Formato de medio kilo de nuestro perfil brillante y sostenible.",
+        color: "#10B981", // Green
+        gradient: "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "MV-1000",
+        name: "Monteverde 1kg",
+        tagline: "Línea Tradicional",
+        price: 80,
+        priceMayor: 72,
+        roast: "Medio",
+        intensity: 5,
+        mood: "monteverde",
+        notes: ["Mandarina", "Miel", "Floral"],
+        image: "/images/default-pack.jpg",
+        description: "Máximo rendimiento. 1 kilogramo del perfil puro de Guayabamba.",
+        color: "#10B981", // Green
+        gradient: "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%)",
+        isHero: true
+    },
+    {
+        id: "MV-DUO",
+        name: "Pack Dúo Monteverde",
+        tagline: "2 x 500g",
+        price: 85,
+        roast: "Medio",
+        intensity: 5,
+        mood: "monteverde",
+        notes: ["Pack", "Ahorro", "Diario"],
+        image: "/images/default-pack.jpg",
+        description: "Pack dúo para el consumo continuo en casa, conservando la frescura.",
+        color: "#059669", 
+        gradient: "radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "MV-TRIO",
+        name: "Pack Trío Especialidad",
+        tagline: "3 x 500g",
+        price: 120,
+        roast: "Curaduría",
+        intensity: 6,
+        mood: "monteverde",
+        notes: ["Degustación", "Complejo", "Especialidad"],
+        image: "/images/default-pack.jpg",
+        description: "La triada perfecta para explorar la complejidad del Valle de Guayabamba.",
+        color: "#047857",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(4, 120, 87, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "MV-RESERVA",
+        name: "Pack Reserva / Experiencia",
+        tagline: "4 x 500g",
+        price: 155,
+        roast: "Premium",
+        intensity: 7,
+        mood: "monteverde",
+        notes: ["Colección", "Reserva", "Limitado"],
+        image: "/images/default-pack.jpg",
+        description: "La máxima experiencia Monteverde. Cuatro paquetes de medio kilo de los lotes más exquisitos.",
+        color: "#064E3B",
+        gradient: "radial-gradient(circle at 50% 50%, rgba(6, 78, 59, 0.15), transparent 70%)",
+        isHero: true
+    },
+
+    // ── BUENAMOZA (CAFÉ MUJER) ──
+    {
+        id: "BM-250",
+        name: "Buenamoza 250g",
+        tagline: "Café Mujer",
+        price: 25,
+        priceMayor: 20,
+        roast: "Medio-Oscuro",
+        intensity: 7,
+        mood: "buenamoza",
+        notes: ["Chocolate Oscuro", "Nuez", "Caramelo"],
+        image: "/images/default-pack.jpg",
+        description: "Café de origen procesado y cultivado por mujeres cafetaleras.",
+        color: "#9333EA", // Purple
+        gradient: "radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "BM-500",
+        name: "Buenamoza 500g",
+        tagline: "Café Mujer",
+        price: 50,
+        priceMayor: 40,
+        roast: "Medio-Oscuro",
+        intensity: 7,
+        mood: "buenamoza",
+        notes: ["Chocolate Oscuro", "Nuez", "Caramelo"],
+        image: "/images/default-pack.jpg",
+        description: "Medio kilo de nuestro café homenaje al trabajo agrícola femenino.",
+        color: "#9333EA", // Purple
+        gradient: "radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.15), transparent 70%)",
+        isHero: false
+    },
+    {
+        id: "BM-1000",
+        name: "Buenamoza 1kg",
+        tagline: "Café Mujer",
+        price: 100,
+        priceMayor: 80,
+        roast: "Medio-Oscuro",
+        intensity: 7,
+        mood: "buenamoza",
+        notes: ["Chocolate Oscuro", "Nuez", "Caramelo"],
+        image: "/images/default-pack.jpg",
+        description: "Presentación de gran volumen para el café insignia de nuestras productoras.",
+        color: "#DB2777", // Pink
+        gradient: "radial-gradient(circle at 50% 50%, rgba(219, 39, 119, 0.15), transparent 70%)",
+        isHero: true
+    },
+
+    // ── TIMBUYACU: LÍNEA CLÁSICA Y EDICIONES ──
     {
         id: "TC-250",
         name: "Timbuyacu Clásico 250g",
@@ -26,7 +172,7 @@ export const PRODUCTS: Product[] = [
         mood: "timbuyacu",
         notes: ["Panela", "Naranja", "Cacao"],
         image: "/images/default-pack.jpg",
-        description: "El perfil tradicional de la Finca Timbuyacu. Notas dulces y acidez cítrica brillante.",
+        description: "El perfil tradicional de la Finca Timbuyacu. Notas frutales y acidez cítrica brillante.",
         color: "#D4AF37", // Gold
         gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
         isHero: false
@@ -46,8 +192,6 @@ export const PRODUCTS: Product[] = [
         gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
         isHero: false
     },
-
-    // ── TIMBUYACU: EDICIÓN LIMITADA ──
     {
         id: "TL-MARAGO",
         name: "Timbuyacu Maragogype",
@@ -61,21 +205,6 @@ export const PRODUCTS: Product[] = [
         description: "Granos 'Elefante' de tamaño excepcional. Cosecha selectiva de Maragogype.",
         color: "#F87171", // Soft Red
         gradient: "radial-gradient(circle at 50% 50%, rgba(248, 113, 113, 0.15), transparent 70%)",
-        isHero: false
-    },
-    {
-        id: "TL-BOURBON",
-        name: "Timbuyacu Bourbon",
-        tagline: "Lavado — Edición Limitada 250g",
-        price: 26,
-        roast: "Medio-Claro",
-        intensity: 5,
-        mood: "limitada",
-        notes: ["Caramelo", "Manzana", "Nuez"],
-        image: "/images/default-pack.jpg",
-        description: "Varietal clásico Bourbon. Taza limpia, dulce y con acidez málica.",
-        color: "#FBBF24", // Amber
-        gradient: "radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.15), transparent 70%)",
         isHero: false
     },
     {
@@ -93,23 +222,6 @@ export const PRODUCTS: Product[] = [
         gradient: "radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.15), transparent 70%)",
         isHero: true // Hero Layout
     },
-
-    // ── TIMBUYACU: FILTER ──
-    {
-        id: "TF-15",
-        name: "Timbuyacu Filter Unit",
-        tagline: "Drip Bag — 15g Unit",
-        price: 4,
-        roast: "Medio",
-        intensity: 6,
-        mood: "filter",
-        notes: ["Práctico", "Dulce", "Equilibrado"],
-        image: "/images/default-pack.jpg",
-        description: "Café de especialidad en formato drip-bag para preparar en cualquier lugar.",
-        color: "#9CA3AF", // Gray
-        gradient: "radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.15), transparent 70%)",
-        isHero: false
-    },
     {
         id: "TF-SET-5",
         name: "Set 5 Timbuyacu Filters",
@@ -126,23 +238,6 @@ export const PRODUCTS: Product[] = [
         isHero: false
     },
     {
-        id: "TF-SET-MUG",
-        name: "Timbuyacu Filters + Taza",
-        tagline: "Timbuyacu Collection",
-        price: 35,
-        roast: "Medio",
-        intensity: 6,
-        mood: "filter",
-        notes: ["Pack Regalo", "Cerámica", "Premium"],
-        image: "/images/default-pack.jpg",
-        description: "Incluye filtros Timbuyacu y una taza de cerámica artesanal.",
-        color: "#D4AF37",
-        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
-        isHero: false
-    },
-
-    // ── TIMBUYACU: EXPERIENCIAS & REGALOS ──
-    {
         id: "TE-COFRE",
         name: "Cofre de la Finca Timbuyacu",
         tagline: "3 Microlotes Exclusivos",
@@ -152,148 +247,9 @@ export const PRODUCTS: Product[] = [
         mood: "experiencia",
         notes: ["Mirador", "Jergón", "Shapingo"],
         image: "/images/default-pack.jpg",
-        description: "Una caja premium de degustación con tres microlotes excepcionales cosechados en parcelas específicas de Rodríguez de Mendoza.",
+        description: "Una caja premium de degustación con tres microlotes excepcionales cosechados en parcelas específicas.",
         color: "#EAB308", // Yellow/Gold
         gradient: "radial-gradient(circle at 50% 50%, rgba(234, 179, 8, 0.2), transparent 70%)",
         isHero: true // Hero Layout
-    },
-    {
-        id: "TE-AMAZONICO",
-        name: "Set Amazónico Timbuyacu + Buenamoza",
-        tagline: "Timbuyacu + Buenamoza",
-        price: 45,
-        roast: "Doble Origen",
-        intensity: 7,
-        mood: "experiencia",
-        notes: ["Colaboración", "Contrastes", "Selva"],
-        image: "/images/default-pack.jpg",
-        description: "La unión de dos fincas legendarias en un solo viaje sensorial amazonense.",
-        color: "#10B981", // Emerald
-        gradient: "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%)",
-        isHero: false
-    },
-    {
-        id: "TE-NAVIDAD",
-        name: "Set Navideño Timbuyacu",
-        tagline: "Edición Festiva",
-        price: 50,
-        roast: "Especial",
-        intensity: 8,
-        mood: "experiencia",
-        notes: ["Especias", "Cacao", "Cálido"],
-        image: "/images/default-pack.jpg",
-        description: "Un perfil de tueste diseñado para acompañar los dulces de temporada.",
-        color: "#EF4444", // Red
-        gradient: "radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.15), transparent 70%)",
-        isHero: false
-    },
-    {
-        id: "TE-FILTERS-MUG-SPL",
-        name: "Set Filters + Taza Clásica",
-        tagline: "Edición Especial",
-        price: 38,
-        roast: "Medio",
-        intensity: 6,
-        mood: "experiencia",
-        notes: ["Edición Limitada", "Cerámica", "Regalo"],
-        image: "/images/default-pack.jpg",
-        description: "Caja de regalo premium con filtros y la taza oficial de Finca Timbuyacu.",
-        color: "#D4AF37",
-        gradient: "radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15), transparent 70%)",
-        isHero: false
-    },
-
-    // ── BUENAMOZA (CAFÉ MUJER) ──
-    {
-        id: "BM-CLASICO",
-        name: "Buenamoza Clásico",
-        tagline: "Línea Principal — 250g",
-        price: 20,
-        roast: "Medio-Oscuro",
-        intensity: 7,
-        mood: "buenamoza",
-        notes: ["Chocolate Oscuro", "Nuez", "Caramelo"],
-        image: "/images/default-pack.jpg",
-        description: "Producido íntegramente por mujeres cafetaleras. Un perfil más intenso y achocolatado.",
-        color: "#9333EA", // Purple
-        gradient: "radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.15), transparent 70%)",
-        isHero: true
-    },
-    {
-        id: "BM-RESERVA",
-        name: "Buenamoza Reserva",
-        tagline: "Selección Especial — 250g",
-        price: 28,
-        roast: "Medio",
-        intensity: 6,
-        mood: "buenamoza",
-        notes: ["Cacao", "Frutos Rojos", "Vino"],
-        image: "/images/default-pack.jpg",
-        description: "Los mejores lotes de la asociación Buenamoza. Complejo y vinoso.",
-        color: "#DB2777", // Pink
-        gradient: "radial-gradient(circle at 50% 50%, rgba(219, 39, 119, 0.15), transparent 70%)",
-        isHero: false
-    },
-    {
-        id: "BM-MERCH",
-        name: "Tote Bag Buenamoza",
-        tagline: "Apoya a la Mujer Cafetalera",
-        price: 15,
-        roast: "Accesorios",
-        intensity: 0,
-        mood: "buenamoza",
-        notes: ["Algodón Orgánico", "Artesanal", "Comunidad"],
-        image: "/images/default-pack.jpg",
-        description: "Bolsa de tela 100% algodón orgánico tejida y bordada por las mujeres de la asociación.",
-        color: "#EC4899", // Fuchsia
-        gradient: "radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15), transparent 70%)",
-        isHero: false
-    },
-
-    // ── CAFÉ MONTEVERDE (CLÁSICO) ──
-    {
-        id: "MV-ESTANDAR-250",
-        name: "Monteverde Clásico 250g",
-        tagline: "Línea Tradicional",
-        price: 16,
-        roast: "Medio",
-        intensity: 5,
-        mood: "monteverde",
-        notes: ["Mandarina", "Miel", "Floral"],
-        image: "/images/default-pack.jpg",
-        description: "El café que inició todo. Un perfil de Rodriguez de Mendoza extremadamente limpio y brillante.",
-        color: "#10B981", // Green
-        gradient: "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%)",
-        isHero: true
-    },
-    {
-        id: "MV-ESTANDAR-500",
-        name: "Monteverde Clásico 500g",
-        tagline: "Línea Tradicional",
-        price: 29,
-        roast: "Medio",
-        intensity: 5,
-        mood: "monteverde",
-        notes: ["Mandarina", "Miel", "Floral"],
-        image: "/images/default-pack.jpg",
-        description: "Formato de medio kilo de nuestro perfil tradicional.",
-        color: "#10B981", // Green
-        gradient: "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%)",
-        isHero: false
-    },
-    {
-        id: "MV-TAZA",
-        name: "Taza Monteverde",
-        tagline: "Cerámica Gres",
-        price: 22,
-        roast: "Accesorios",
-        intensity: 0,
-        mood: "monteverde",
-        notes: ["Artesanal", "Térmica", "Verde"],
-        image: "/images/default-pack.jpg",
-        description: "Diseñada para retener la temperatura perfecta. Esmalte verde selva.",
-        color: "#059669", // Darker Green
-        gradient: "radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.15), transparent 70%)",
-        isHero: false
     }
 ];
