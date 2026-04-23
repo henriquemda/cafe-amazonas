@@ -31,7 +31,7 @@ export default function PasswordGate({
     // Environmental event listeners
     useEffect(() => {
         if (isUnlocked || isLoading) return;
-        
+
         // Auto-focus persistence
         const focusInput = () => inputRef.current?.focus();
         focusInput();
@@ -54,7 +54,7 @@ export default function PasswordGate({
 
     const handleSubmit = (e?: React.FormEvent) => {
         e?.preventDefault();
-        
+
         // Target: TiendaAmazonas@
         if (inputValue === "TiendaAmazonas@") {
             setError(false);
@@ -89,11 +89,11 @@ export default function PasswordGate({
 
     return (
         <div className={`fixed inset-0 z-[9999] bg-[#020302] overflow-hidden transition-all duration-[2.5s] cubic-bezier(0.19,1,0.22,1) ${isFadingOut ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-            
+
             {/* ── Atmospheric Void & Caustics ── */}
             <div className={`absolute inset-0 film-grain opacity-40 mix-blend-overlay pointer-events-none transition-opacity duration-1000 ${progress > 0 ? "opacity-60" : ""}`} />
-            
-            <div 
+
+            <div
                 className="absolute inset-0 pointer-events-none mix-blend-screen transition-all duration-1000 ease-out"
                 style={{
                     background: `radial-gradient(circle at 50% ${50 + mousePos.y}%, rgba(212, 175, 55, ${0.02 + (progress * 0.12)}) 0%, transparent ${40 + (progress * 40)}%)`
@@ -102,7 +102,7 @@ export default function PasswordGate({
 
             {/* ── Monolithic Horizon (Background Text) ── */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] w-[150vw] text-center pointer-events-none mix-blend-overlay z-0 select-none flex items-center justify-center">
-                <span 
+                <span
                     className="font-serif text-[18vw] leading-none text-white transition-all duration-[3s] cubic-bezier(0.19,1,0.22,1) whitespace-nowrap blur-[2px]"
                     style={{
                         letterSpacing: `${0.1 + (progress * 0.3)}em`,
@@ -115,7 +115,7 @@ export default function PasswordGate({
             </div>
 
             {/* ── Stage Kinesis (The 3D Rotational Container) ── */}
-            <div 
+            <div
                 className="absolute inset-0 flex flex-col items-center justify-center preserve-3d transition-all duration-700 ease-out"
                 style={{
                     transform: `perspective(1200px) rotateX(${mousePos.y}deg) rotateY(${mousePos.x}deg) scale(${isFadingOut ? 1.05 : 1})`,
@@ -125,25 +125,25 @@ export default function PasswordGate({
                 {/* ── The Cryptographic Relic ── */}
                 <div className="relative w-28 h-28 mb-16 z-10 flex items-center justify-center animate-fade-in-up">
                     {/* Ring 1 - Atmospheric Halo */}
-                    <div 
+                    <div
                         className={`absolute inset-0 bg-[var(--color-gold-400)] rounded-full blur-[40px] transition-all duration-1000 ease-out`}
                         style={{ opacity: 0.1 + (progress * 0.15), transform: `scale(${1 + progress})` }}
                     />
 
                     {/* Ring 2 - Outer Mechanical Orbit */}
-                    <div 
+                    <div
                         className={`absolute inset-0 border border-white/10 rounded-full transition-transform duration-[3s] ease-out border-dashed ${error ? 'border-red-500/40' : ''}`}
                         style={{ transform: `rotate(${progress * 240}deg) scale(${1 + (progress * 0.15)})` }}
                     />
-                    
+
                     {/* Ring 3 - Inner Angular Construct */}
-                    <div 
+                    <div
                         className={`absolute inset-5 border-[0.5px] border-[var(--color-gold-500)]/30 rounded-sm transition-transform duration-[1.5s] ease-out ${error ? 'border-red-500/80 rotate-45 scale-125' : ''}`}
                         style={{ transform: `rotate(${-progress * 135}deg) scale(${1 - (progress * 0.2)})` }}
                     />
-                    
+
                     {/* Ring 4 - The Core */}
-                    <div 
+                    <div
                         className={`absolute w-1.5 h-1.5 rounded-full transition-all duration-700 ${error ? 'bg-red-500 shadow-[0_0_20px_#ef4444] scale-150' : 'bg-[var(--color-gold-300)] shadow-[0_0_15px_var(--color-gold-400)]'}`}
                         style={{ transform: `scale(${1 + (progress * 2.5)})` }}
                     />
@@ -151,7 +151,7 @@ export default function PasswordGate({
 
                 {/* ── Typography Architecture ── */}
                 <div className="flex flex-col items-center z-10 pointer-events-none animate-fade-in-up animate-delay-2 transition-all duration-1000"
-                    style={{ 
+                    style={{
                         opacity: progress > 0 ? 0.4 : 1,
                         transform: `translateY(${progress * -10}px)`
                     }}
@@ -168,12 +168,12 @@ export default function PasswordGate({
                         Protocolo de Acceso
                     </h2>
                     <h1 className="font-serif text-[2.5rem] md:text-[4rem] lg:text-[5rem] text-white/95 tracking-[0.3em] md:tracking-[0.4em] uppercase mix-blend-plus-lighter text-center font-light leading-none">
-                        La Puerta
+                        El Café
                     </h1>
                 </div>
 
                 {/* ── Abstract Interaction Form ── */}
-                <form 
+                <form
                     onSubmit={handleSubmit}
                     className={`mt-24 md:mt-32 w-full max-w-[320px] md:max-w-[400px] relative flex flex-col items-center z-20 transition-transform duration-[0.4s] cubic-bezier(0.36,0,0.66,-0.56) ${error ? 'translate-x-4 md:translate-x-6' : ''}`}
                 >
@@ -185,7 +185,7 @@ export default function PasswordGate({
                             </span>
                         ) : (
                             Array.from({ length: inputValue.length }).map((_, i) => (
-                                <div 
+                                <div
                                     key={i}
                                     className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[var(--color-gold-400)] shadow-[0_0_12px_var(--color-gold-500)] animate-scale-reveal`}
                                     style={{ animationDelay: '0s', animationDuration: '0.3s' }}
@@ -211,11 +211,11 @@ export default function PasswordGate({
 
                     {/* Infinity Track / Progression Line */}
                     <div className="absolute bottom-0 left-0 w-full h-[1px] md:h-[2px] bg-white/10 overflow-hidden rounded-full">
-                        <div 
+                        <div
                             className={`h-full bg-[var(--color-gold-500)] transition-all duration-[0.8s] cubic-bezier(0.19,1,0.22,1) ${error ? '!bg-red-500 shadow-[0_0_15px_#ef4444]' : 'shadow-[0_0_15px_var(--color-gold-500)]'}`}
-                            style={{ 
+                            style={{
                                 width: `${progress * 100}%`,
-                                marginLeft: `${50 - (progress * 50)}%` 
+                                marginLeft: `${50 - (progress * 50)}%`
                             }}
                         />
                     </div>
@@ -244,7 +244,7 @@ export default function PasswordGate({
             {/* ── Whiteout Transcendence ── */}
             <div className={`absolute inset-0 bg-[#D4AF37] mix-blend-color-dodge z-50 transition-all duration-[2s] ease-in pointer-events-none ${isFadingOut ? 'opacity-100 scale-110' : 'opacity-0 scale-100'}`} />
             <div className={`absolute inset-0 bg-white z-[51] transition-opacity duration-[1.5s] delay-300 ease-in pointer-events-none ${isFadingOut ? 'opacity-100' : 'opacity-0'}`} />
-            
+
         </div>
     );
 }
